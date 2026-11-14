@@ -38,7 +38,7 @@ Une semaine type : 1 Geste SEO local (thème Jour, pour rythmer la grille du pro
 ## Sources d'inspiration, par ordre de priorité
 
 1. **Les articles publiés sur ezioseo.com** (API publique `https://api.ezioseo.com/api/public/v1/articles/titles`, ou le blog) : un article = un carrousel qui en reprend l'idée et renvoie vers lui.
-2. **Les requêtes Search Console** d'ezioseo.com (connecteur Windsor `searchconsole`) : les questions que les gens tapent sont des sujets de carrousel.
+2. **Les requêtes Search Console** d'ezioseo.com (connecteur Windsor `searchconsole`, compte `sc-domain:ezioseo.com`, champs `query, page, clicks, impressions, ctr, position`) : les questions que les gens tapent sont des sujets de carrousel.
 3. **Les PR fusionnées du repo EZIO** de la semaine : rubrique « Sous le capot ».
 4. `backlog.md`.
 
@@ -50,6 +50,7 @@ Une semaine type : 1 Geste SEO local (thème Jour, pour rythmer la grille du pro
 - Stories : format `story`, 1 slide, souvent `cta` ou `text` ; pas de légende possible via l'API.
 - Regarder chaque JPEG rendu avant de le proposer : texte qui déborde, chevauchement avec le pied de slide, faute.
 - Copier les JPEG dans `public/AAAA-wNN/<id>/<n>.jpg`, commit, push sur `main`. URL publique : `https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/main/public/...` — vérifier avec `curl -sI` (200, `content-type: image/jpeg`) **avant** de proposer la publication.
+- **Vidéos (Reels)** : raw.githubusercontent sert les `.mp4` en `application/octet-stream` (vérifié le 14/11). Tenter l'URL raw ; si Windsor/Instagram la refuse, utiliser l'URL GitHub Pages `https://noe-epi2024.github.io/ezio-social/public/...` (à condition que Noé ait activé Pages : Settings → Pages → branche `main`, dossier `/`), sinon prévenir Noé. Ne jamais inventer une autre forme d'hébergement.
 
 ## Légendes
 
