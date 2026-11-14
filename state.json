@@ -1,0 +1,10 @@
+{
+  "account": "ezio.seo",
+  "published": [
+    { "date": "2026-10-13", "type": "carousel", "rubrique": "Le radar", "sujet": "Votre rang Google Maps change d'une rue à l'autre (lancement)" }
+  ],
+  "ready_not_published": [
+    { "id": "reel-01-radar", "type": "reel", "rubrique": "Le radar", "sujet": "La carte qui se répare toute seule (démo 24 s, données fictives)", "files": ["public/reels/reel-01-radar.mp4", "public/reels/reel-01-radar-cover.jpg"], "note": "Prévu le 26 oct., jamais publié (le compte ne comptait qu'une publication au 14 nov.). À placer en tête du premier lot." }
+  ],
+  "approved_pending": []
+}

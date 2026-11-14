@@ -1,0 +1,8 @@
+{"week":"test","items":[
+ {"id":"test-carrousel","format":"post","slides":[
+  {"kind":"hook","theme":"jour","eyebrow":"Geste SEO local","page":"01/04","title":"Votre catégorie Google décide *qui* vous trouve."},
+  {"kind":"text","theme":"jour","eyebrow":"Geste SEO local","page":"02/04","title":"Une seule catégorie *principale*.","bullets":["La plus précise possible : « Plombier », pas « Entreprise de services ».","Les catégories secondaires complètent, elles ne remplacent pas.","Regardez celle des 3 premiers de votre zone avant de choisir."]},
+  {"kind":"grid","eyebrow":"Le radar","page":"03/04","title":"Le même métier, *deux* catégories.","grid":[[1,2,3,5,9],[2,1,2,4,8],[3,2,1,3,7],[6,4,3,5,12],[11,8,6,9,null]],"note":"Exemple illustratif"},
+  {"kind":"cta","page":"04/04","eyebrow":"Votre tour","title":"Vérifiez la vôtre en 2 minutes.","body":"Audit gratuit de votre fiche Google, point par point."}]},
+ {"id":"test-story","format":"story","slides":[{"kind":"cta","eyebrow":"Audit gratuit","title":"Où vous perdez des clients, rue par rue.","body":"Votre grille de visibilité Google Maps, offerte."}]}
+]}
