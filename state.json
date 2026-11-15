@@ -1,10 +1,61 @@
 {
   "account": "ezio.seo",
   "published": [
-    { "date": "2026-10-13", "type": "carousel", "rubrique": "Le radar", "sujet": "Votre rang Google Maps change d'une rue à l'autre (lancement)" }
+    {
+      "date": "2026-10-13",
+      "type": "carousel",
+      "rubrique": "Le radar",
+      "sujet": "Votre rang Google Maps change d'une rue à l'autre (lancement)"
+    }
   ],
   "ready_not_published": [
-    { "id": "reel-01-radar", "type": "reel", "rubrique": "Le radar", "sujet": "La carte qui se répare toute seule (démo 24 s, données fictives)", "files": ["public/reels/reel-01-radar.mp4", "public/reels/reel-01-radar-cover.jpg"], "note": "Prévu le 26 oct., jamais publié (le compte ne comptait qu'une publication au 14 nov.). À placer en tête du premier lot." }
+    {
+      "id": "reel-01-radar",
+      "type": "reel",
+      "rubrique": "Le radar",
+      "sujet": "La carte qui se répare toute seule (démo 24 s, données fictives)",
+      "files": [
+        "public/reels/reel-01-radar.mp4",
+        "public/reels/reel-01-radar-cover.jpg"
+      ],
+      "note": "Prévu le 26 oct., jamais publié (le compte ne comptait qu'une publication au 14 nov.). À placer en tête du premier lot."
+    }
   ],
-  "approved_pending": []
+  "approved_pending": [
+    {
+      "slot": "2026-11-16T12:00 Europe/Paris",
+      "id": "w47-story-lun",
+      "type": "story",
+      "rubrique": "CTA",
+      "sujet": "Où perdez-vous des clients ? (audit gratuit)"
+    },
+    {
+      "slot": "2026-11-17T12:00 Europe/Paris",
+      "id": "reel-01-radar",
+      "type": "reel",
+      "rubrique": "Le radar",
+      "sujet": "La carte qui se répare toute seule (démo 24 s, données fictives)"
+    },
+    {
+      "slot": "2026-11-19T12:00 Europe/Paris",
+      "id": "w47-post-jeu-categorie",
+      "type": "carousel",
+      "rubrique": "Geste SEO local",
+      "sujet": "La catégorie principale de votre fiche Google"
+    },
+    {
+      "slot": "2026-11-20T18:00 Europe/Paris",
+      "id": "w47-story-ven",
+      "type": "story",
+      "rubrique": "Geste SEO local",
+      "sujet": "Relais : votre catégorie principale est-elle la bonne ?"
+    },
+    {
+      "slot": "2026-11-21T10:00 Europe/Paris",
+      "id": "w47-post-sam-coulisses",
+      "type": "carousel",
+      "rubrique": "En coulisses",
+      "sujet": "Pas de fiche Google ? EZIO s'adapte (PR #243-#245)"
+    }
+  ]
 }
