@@ -1,0 +1,19 @@
+{"week":"2026-w47","items":[
+ {"id":"story-lun","format":"story","slides":[
+  {"kind":"cta","eyebrow":"Audit gratuit","title":"Où perdez-vous des *clients* ?","body":"Votre fiche Google passée en revue, point par point."}]},
+ {"id":"post-jeu-categorie","format":"post","slides":[
+  {"kind":"hook","theme":"jour","eyebrow":"Geste SEO local","page":"01/06","title":"Votre catégorie Google décide *qui* vous trouve."},
+  {"kind":"text","theme":"jour","eyebrow":"Geste SEO local","page":"02/06","title":"Une seule catégorie *principale*.","bullets":["Google s'en sert pour décider sur quelles recherches vous montrer.","Vous pouvez en ajouter d'autres, mais une seule est principale.","C'est souvent celle que l'on choisit vite, à la création, puis qu'on oublie."]},
+  {"kind":"text","theme":"jour","eyebrow":"Geste SEO local","page":"03/06","title":"Choisissez la plus *précise*.","bullets":["« Plombier » plutôt que « Entreprise de services ».","Une catégorie par activité réelle, pas par mot-clé espéré.","Les catégories secondaires complètent ; elles ne remplacent pas."]},
+  {"kind":"text","theme":"jour","eyebrow":"Geste SEO local","page":"04/06","title":"Regardez vos *voisins* d'abord.","bullets":["Tapez votre métier et votre ville dans Google Maps.","Ouvrez les 3 premières fiches et notez leur catégorie principale.","Si elle diffère de la vôtre, demandez-vous pourquoi."]},
+  {"kind":"text","theme":"jour","eyebrow":"Geste SEO local","page":"05/06","title":"Changer, oui. *Prudemment*.","bullets":["Un changement de catégorie peut déclencher une nouvelle vérification de la fiche.","Changez une seule chose à la fois, puis observez quelques semaines.","Notez la date : vous saurez relier la suite à ce geste."]},
+  {"kind":"cta","page":"06/06","eyebrow":"Votre tour","title":"Et la vôtre, elle dit quoi ?","body":"Audit gratuit de votre fiche Google, point par point."}]},
+ {"id":"story-ven","format":"story","slides":[
+  {"kind":"text","theme":"jour","eyebrow":"Geste SEO local","title":"Votre catégorie principale est-elle la *bonne* ?","bullets":["Tapez votre métier et votre ville dans Google Maps.","Comparez avec les 3 premières fiches.","Le pas-à-pas complet est dans notre post de jeudi."]}]},
+ {"id":"post-sam-coulisses","format":"post","slides":[
+  {"kind":"hook","eyebrow":"En coulisses","page":"01/05","title":"Pas de fiche Google ? EZIO *s'adapte*."},
+  {"kind":"text","eyebrow":"En coulisses","page":"02/05","title":"L'inscription pose les *bonnes* questions.","bullets":["Votre fiche Google, choisie dans la liste, ou « je n'en ai pas ».","Votre pays et la langue de vos contenus.","Votre échelle : votre quartier, plusieurs villes, tout le pays ou en ligne."]},
+  {"kind":"text","eyebrow":"En coulisses","page":"03/05","title":"Sans fiche, rien d'*inutile*.","bullets":["Le menu masque fiche et avis, posts Google et positions locales.","La liste de démarrage ne vous demande plus de connecter ce que vous n'avez pas.","Le jour où vous créez votre fiche, un interrupteur rallume tout."]},
+  {"kind":"text","eyebrow":"En coulisses","page":"04/05","title":"Un service *national* ?","bullets":["Opportunités et volumes mesurés sur le pays, pas sur la ville du siège.","Plus de grille automatique autour de votre adresse : elle ne mesurerait rien d'utile.","Le scan manuel reste disponible."]},
+  {"kind":"cta","page":"05/05","eyebrow":"Votre tour","title":"Voyez ce qu'EZIO ferait pour vous.","body":"Audit gratuit de votre visibilité Google, point par point."}]}
+]}
