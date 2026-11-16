@@ -30,3 +30,8 @@
 
 ## Sous le capot
 - Chaque semaine : une fonction livrée (lire les PR fusionnées)
+
+## Issus des articles du blog (SEO S47, 16/11) — carrousels relais
+- « Où suis-je vraiment sur Google Maps ? » : 5 slides, de la position unique à la grille rue par rue, dernière slide vers l'audit gratuit (ezioseo.com/roi)
+- Répondre à un avis Google, positif ou négatif : 3 modèles en 3 phrases, et les 2 erreurs qui coûtent des clients
+- Les assistants IA recommandent-ils votre entreprise ? Le test à faire soi-même en 2 minutes, puis ce qui fait qu'on est cité (fiche complète, avis, pages claires)
