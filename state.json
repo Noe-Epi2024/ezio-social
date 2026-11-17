@@ -14,29 +14,18 @@
       "rubrique": "CTA",
       "sujet": "Où perdez-vous des clients ? (audit gratuit)",
       "media_id": "18121988563961192"
-    }
-  ],
-  "ready_not_published": [
+    },
     {
+      "date": "2026-11-17",
       "id": "reel-01-radar",
       "type": "reel",
       "rubrique": "Le radar",
       "sujet": "La carte qui se répare toute seule (démo 24 s, données fictives)",
-      "files": [
-        "public/reels/reel-01-radar.mp4",
-        "public/reels/reel-01-radar-cover.jpg"
-      ],
-      "note": "Prévu le 26 oct., jamais publié (le compte ne comptait qu'une publication au 14 nov.). À placer en tête du premier lot."
+      "media_id": "18652976536057781"
     }
   ],
+  "ready_not_published": [],
   "approved_pending": [
-    {
-      "slot": "2026-11-17T12:00 Europe/Paris",
-      "id": "reel-01-radar",
-      "type": "reel",
-      "rubrique": "Le radar",
-      "sujet": "La carte qui se répare toute seule (démo 24 s, données fictives)"
-    },
     {
       "slot": "2026-11-19T12:00 Europe/Paris",
       "id": "w47-post-jeu-categorie",
