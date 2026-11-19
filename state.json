@@ -22,17 +22,18 @@
       "rubrique": "Le radar",
       "sujet": "La carte qui se répare toute seule (démo 24 s, données fictives)",
       "media_id": "18652976536057781"
+    },
+    {
+      "date": "2026-11-19",
+      "id": "w47-post-jeu-categorie",
+      "type": "carousel",
+      "rubrique": "Geste SEO local",
+      "sujet": "La catégorie principale de votre fiche Google",
+      "media_id": "18139406953633550"
     }
   ],
   "ready_not_published": [],
   "approved_pending": [
-    {
-      "slot": "2026-11-19T12:00 Europe/Paris",
-      "id": "w47-post-jeu-categorie",
-      "type": "carousel",
-      "rubrique": "Geste SEO local",
-      "sujet": "La catégorie principale de votre fiche Google"
-    },
     {
       "slot": "2026-11-20T18:00 Europe/Paris",
       "id": "w47-story-ven",

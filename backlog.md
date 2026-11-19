@@ -1,7 +1,7 @@
 # Backlog de sujets Instagram — à piocher, puis rayer (et consigner dans state.json)
 
 ## Geste SEO local (thème Jour)
-- La catégorie principale de votre fiche Google : le réglage le plus sous-estimé
+- ~~La catégorie principale de votre fiche Google : le réglage le plus sous-estimé~~ (publié le 19/11)
 - Répondre à un avis négatif : la structure en 3 phrases
 - Vos horaires exceptionnels (fêtes, congés) : pourquoi Google les surveille
 - Les photos de votre fiche : lesquelles mettre, à quelle fréquence
