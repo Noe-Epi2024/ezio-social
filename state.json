@@ -30,17 +30,18 @@
       "rubrique": "Geste SEO local",
       "sujet": "La catégorie principale de votre fiche Google",
       "media_id": "18139406953633550"
+    },
+    {
+      "date": "2026-11-20",
+      "id": "w47-story-ven",
+      "type": "story",
+      "rubrique": "Geste SEO local",
+      "sujet": "Relais : votre catégorie principale est-elle la bonne ?",
+      "media_id": "18111079895192308"
     }
   ],
   "ready_not_published": [],
   "approved_pending": [
-    {
-      "slot": "2026-11-20T18:00 Europe/Paris",
-      "id": "w47-story-ven",
-      "type": "story",
-      "rubrique": "Geste SEO local",
-      "sujet": "Relais : votre catégorie principale est-elle la bonne ?"
-    },
     {
       "slot": "2026-11-21T10:00 Europe/Paris",
       "id": "w47-post-sam-coulisses",
