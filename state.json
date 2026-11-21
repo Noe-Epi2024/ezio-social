@@ -38,16 +38,16 @@
       "rubrique": "Geste SEO local",
       "sujet": "Relais : votre catégorie principale est-elle la bonne ?",
       "media_id": "18111079895192308"
-    }
-  ],
-  "ready_not_published": [],
-  "approved_pending": [
+    },
     {
-      "slot": "2026-11-21T10:00 Europe/Paris",
+      "date": "2026-11-21",
       "id": "w47-post-sam-coulisses",
       "type": "carousel",
       "rubrique": "En coulisses",
-      "sujet": "Pas de fiche Google ? EZIO s'adapte (PR #243-#245)"
+      "sujet": "Pas de fiche Google ? EZIO s'adapte (PR #243-#245)",
+      "media_id": "18123691511284065"
     }
-  ]
+  ],
+  "ready_not_published": [],
+  "approved_pending": []
 }
