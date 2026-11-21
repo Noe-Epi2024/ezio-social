@@ -75,6 +75,7 @@ times.forEach((t, i) => console.log(`  segment ${i + 1} : ${t.start.toFixed(2)} 
 
 // ---------- 2. Page HTML : toute l'image est une fonction pure de t ----------
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const SCOUT_SRC = fs.readFileSync(path.join(ROOT, 'shorts', 'scout2.mjs'), 'utf8').replace(/^export /gm, '') // inséré tel quel dans la page
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Geist;src:url(${A('Geist-Variable.woff2')});font-weight:100 900}
 @font-face{font-family:'Geist Mono';src:url(${A('GeistMono-Variable.woff2')});font-weight:100 900}
@@ -93,7 +94,7 @@ html,body{margin:0;background:#0a0a0b}
 .q{font-size:48px;line-height:1.3;margin-top:28px;color:#c7d2fe;border-left:6px solid #6366f1;padding-left:28px}
 .cta{background:#4f46e5;border-color:#6366f1}
 .btn{display:inline-block;margin-top:34px;background:#fff;color:#0a0a0b;font-family:'Geist Mono';font-weight:600;font-size:40px;padding:26px 48px;border-radius:999px}
-#mascot{position:absolute;left:50%;top:820px;width:720px;height:720px;margin-left:-360px}
+#mascot{position:absolute;left:50%;top:730px;width:800px;margin-left:-400px}
 .cap{position:absolute;left:70px;right:70px;bottom:230px;text-align:center;font-size:64px;font-weight:800;line-height:1.12;letter-spacing:-.02em;text-shadow:0 4px 24px rgba(0,0,0,.8)}
 .cap span{opacity:.45}.cap span.on{opacity:1;color:#fff}.cap span.now{color:#a5b4fc;opacity:1}
 .foot{position:absolute;left:84px;right:84px;bottom:110px;display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono';font-size:24px;color:#a4adbd}
@@ -102,36 +103,12 @@ html,body{margin:0;background:#0a0a0b}
 <div class="bar" id="bar"></div>
 <div class="eyebrow">${esc(spec.eyebrow)}</div>
 <div id="cards"></div>
-<svg id="mascot" viewBox="-280 -280 560 560">
-  <defs>
-    <radialGradient id="body" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#818cf8"/><stop offset=".55" stop-color="#4f46e5"/><stop offset="1" stop-color="#312e81"/></radialGradient>
-  </defs>
-  <ellipse cx="0" cy="250" rx="150" ry="18" fill="#000" opacity=".45" id="shadow"/>
-  <g id="rig">
-    <g id="orbBack" fill="none" stroke="#c7d2fe" stroke-width="10" opacity=".55">
-      <ellipse id="o1" rx="245" ry="92"/><ellipse id="o2" rx="245" ry="92"/>
-    </g>
-    <g id="bodyG">
-      <circle r="165" fill="url(#body)"/>
-      <ellipse cx="-62" cy="-92" rx="46" ry="26" fill="#fff" opacity=".18" transform="rotate(-25 -62 -92)"/>
-      <g id="face">
-        <path id="browL" d="M-92 -78 Q-62 -96 -32 -82" stroke="#e0e7ff" stroke-width="12" stroke-linecap="round" fill="none"/>
-        <path id="browR" d="M32 -82 Q62 -96 92 -78" stroke="#e0e7ff" stroke-width="12" stroke-linecap="round" fill="none"/>
-        <g id="eyeL" transform="translate(-60 -28)"><ellipse rx="30" ry="38" fill="#fff"/><circle id="pL" r="16" fill="#0a0a0b"/><circle id="gL" r="5" cx="-5" cy="-7" fill="#fff"/></g>
-        <g id="eyeR" transform="translate(60 -28)"><ellipse rx="30" ry="38" fill="#fff"/><circle id="pR" r="16" fill="#0a0a0b"/><circle id="gR" r="5" cx="-5" cy="-7" fill="#fff"/></g>
-        <ellipse cx="-104" cy="30" rx="22" ry="12" fill="#f472b6" opacity=".35"/><ellipse cx="104" cy="30" rx="22" ry="12" fill="#f472b6" opacity=".35"/>
-        <g transform="translate(0 62)"><path id="mouth" fill="#0f0a1f" stroke="#0f0a1f" stroke-width="6" stroke-linejoin="round"/><path id="tongue" fill="#f472b6"/></g>
-      </g>
-    </g>
-    <g id="orbFront" fill="none" stroke="#e0e7ff" stroke-width="10">
-      <path id="f1"/><path id="f2"/>
-    </g>
-  </g>
-</svg>
+<div id="mascot"></div>
 <div class="cap" id="cap"></div>
 <div class="foot"><img src="${A('mark-white.svg')}" style="height:52px"><span>${esc(spec.note || '@ezio.seo')}</span></div>
 </div>
-<script>
+<script>${SCOUT_SRC}</script><script>
+const MARK='${A('mark-white.svg')}';
 const SEG=${JSON.stringify(spec.segments)}, TIMES=${JSON.stringify(times)}, MOUTH=${JSON.stringify(mouth)}, FPS=${FPS}, DUR=${duration};
 const $=id=>document.getElementById(id);
 const ease=x=>1-Math.pow(1-Math.min(1,Math.max(0,x)),3);
@@ -147,11 +124,6 @@ $('cards').innerHTML=SEG.map((s,i)=>'<div class="card'+(s.card.kind==='cta'?' ct
 const CAP=SEG.map((s,i)=>{const words=s.text.replace(/[«»]/g,'').split(/\\s+/).filter(Boolean);const T=TIMES[i];const tot=words.reduce((a,w)=>a+w.length+1,0);let acc=0;
   const ws=words.map(w=>{const a=T.start+(T.end-T.start)*acc/tot;acc+=w.length+1;return{w,t:a}});const groups=[];
   for(let k=0;k<ws.length;){let g=[ws[k++]];while(k<ws.length&&g.length<5&&!/[.:?!]$/.test(g.at(-1).w))g.push(ws[k++]);groups.push(g)}return groups});
-const EXPR={worried:{bl:'M-92 -70 Q-62 -98 -32 -96',br:'M32 -96 Q62 -98 92 -70',smile:-6},calm:{bl:'M-92 -82 Q-62 -94 -32 -86',br:'M32 -86 Q62 -94 92 -82',smile:6},
-  explain:{bl:'M-92 -84 Q-62 -104 -32 -90',br:'M32 -86 Q62 -94 92 -80',smile:8},happy:{bl:'M-92 -84 Q-62 -106 -32 -92',br:'M32 -92 Q62 -106 92 -84',smile:22}};
-function orbit(rot,front){ // demi-ellipse avant (dessinée par-dessus le corps)
-  const rx=245,ry=92,pts=[];for(let a=0;a<=180;a+=6){const r=a*Math.PI/180,x=rx*Math.cos(r),y=ry*Math.sin(r);const c=Math.cos(rot),s=Math.sin(rot);pts.push([x*c-y*s,x*s+y*c])}
-  return 'M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L')}
 window.render=function(f){
   const t=f/FPS; $('bar').style.width=(100*t/DUR)+'%';
   let si=TIMES.findIndex((x,i)=>t<(TIMES[i+1]?TIMES[i+1].start:1e9)); if(si<0)si=TIMES.length-1;
@@ -162,30 +134,16 @@ window.render=function(f){
     const kin=spring((t-a)/0.55),kout=t>b?ease((t-b)/0.3):0;
     el.style.opacity=Math.min(1,(t-a)/0.15)*(1-kout);
     el.style.transform='translateY('+((1-kin)*120-kout*80)+'px) scale('+(0.92+0.08*kin)+') rotate('+((1-kin)*-3)+'deg)'});
-  // mascotte
-  const v=MOUTH[Math.min(f,MOUTH.length-1)]||0, e=EXPR[SEG[si].expr]||EXPR.calm, talk=v>0.08;
-  const bob=Math.sin(t*2.2)*10+(talk?Math.sin(t*14)*4*v:0), tilt=Math.sin(t*1.3)*3+(talk?Math.sin(t*5.1)*2:0);
-  const segIn=spring((t-TIMES[si].start)/0.5), pop=1+0.05*(1-segIn)*(t>TIMES[si].start?1:0);
-  $('bodyG').setAttribute('transform','translate(0 '+bob.toFixed(1)+') rotate('+tilt.toFixed(2)+') scale('+(pop*(1+v*0.025)).toFixed(3)+' '+(pop*(1-v*0.02)).toFixed(3)+')');
-  $('shadow').setAttribute('rx',(150-bob*0.8).toFixed(1));
-  const r1=t*0.9, r2=-t*0.9+Math.PI/2;
-  $('o1').setAttribute('transform','translate(0 '+(bob*0.6).toFixed(1)+') rotate('+(r1*180/Math.PI).toFixed(1)+')');
-  $('o2').setAttribute('transform','translate(0 '+(bob*0.6).toFixed(1)+') rotate('+(r2*180/Math.PI).toFixed(1)+')');
-  $('f1').setAttribute('d',orbit(r1));$('f1').setAttribute('transform','translate(0 '+(bob*0.6).toFixed(1)+')');
-  $('f2').setAttribute('d',orbit(r2));$('f2').setAttribute('transform','translate(0 '+(bob*0.6).toFixed(1)+')');
-  $('browL').setAttribute('d',e.bl);$('browR').setAttribute('d',e.br);
-  $('browL').setAttribute('transform','translate(0 '+(-v*6).toFixed(1)+')');$('browR').setAttribute('transform','translate(0 '+(-v*6).toFixed(1)+')');
-  // clignement toutes les ~3,4 s, regard qui suit la carte
+  // mascotte Scout : expression + gestes du segment, bouche sur la voix, flottement, clignement
+  const v=MOUTH[Math.min(f,MOUTH.length-1)]||0, S=SEG[si], pose=S.pose||{}, talk=v>0.08;
+  const segIn=spring((t-TIMES[si].start)/0.5);
+  const bob=Math.sin(t*2.2)*10+(talk?Math.sin(t*13)*3*v:0)-(1-segIn)*14*(t>TIMES[si].start?1:0);
+  const tilt=Math.sin(t*1.3)*2.5+(talk?Math.sin(t*4.7)*1.8:0);
   const bt=(t+0.7)%3.4, blink=bt<0.14?Math.abs(Math.cos(bt/0.14*Math.PI)):1;
-  ['eyeL','eyeR'].forEach((id,k)=>$(id).setAttribute('transform','translate('+(k?60:-60)+' -28) scale(1 '+blink.toFixed(2)+')'));
-  const lx=Math.sin(t*0.7)*5, ly=-6+Math.sin(t*0.9)*3;
-  ['pL','pR','gL','gR'].forEach(id=>{const g=id[0]==='g';$(id).setAttribute('cx',(lx+(g?-5:0)).toFixed(1));$(id).setAttribute('cy',(ly+(g?-7:0)).toFixed(1))});
-  // bouche : largeur / ouverture / arrondi selon l'énergie
-  const open=Math.max(0,v)*58, wide=46-v*10+(Math.sin(f*0.9)>0.6&&v>0.5?-14:0), sm=e.smile;
-  let d; if(open<4){d='M'+(-wide)+' 0 Q0 '+(sm*1.4)+' '+wide+' 0'}
-  else d='M'+(-wide)+' 0 Q0 '+(-6)+' '+wide+' 0 Q'+(wide*0.9)+' '+(open*0.9)+' 0 '+(open+sm*0.4)+' Q'+(-wide*0.9)+' '+(open*0.9)+' '+(-wide)+' 0Z';
-  $('mouth').setAttribute('d',d);$('mouth').setAttribute('fill',open<4?'none':'#0f0a1f');
-  $('tongue').setAttribute('d',open>22?'M'+(-wide*0.5)+' '+(open*0.85)+' Q0 '+(open*0.45)+' '+(wide*0.5)+' '+(open*0.85)+' Q0 '+(open+4)+' '+(-wide*0.5)+' '+(open*0.85)+'Z':'');
+  const wave=pose.rpose==='wave'?((t*0.9)%1):0;
+  $('mascot').innerHTML=scoutSvg({id:'m',variant:'casque',expr:S.expr==='calm'?'neutral':S.expr,mouth:Math.min(1,v*1.1),blink,
+    look:[Math.sin(t*0.7)*0.4,(pose.rpose==='point'?-0.5:-0.2)+Math.sin(t*0.9)*0.15],count:pose.count||0,rpose:pose.rpose||'rest',wave,
+    tilt,bob,glow:0.55+v*0.45,size:800});
   // sous-titres
   const groups=CAP[si];let gi=0;for(let k=0;k<groups.length;k++)if(t>=groups[k][0].t-0.05)gi=k;
   const g=groups[gi], show=t>=TIMES[si].start-0.1&&t<=TIMES[si].end+0.4;
