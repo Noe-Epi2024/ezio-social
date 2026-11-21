@@ -1,0 +1,23 @@
+{
+  "id": "short-01-avis-negatif",
+  "rubrique": "Geste SEO local",
+  "eyebrow": "Geste SEO local",
+  "note": "Exemple illustratif",
+  "audio": null,
+  "segments": [
+    { "expr": "worried", "text": "Un avis à une étoile vient de tomber sur votre fiche Google. Surtout, ne répondez pas tout de suite.",
+      "card": { "kind": "review", "stars": 1, "meta": "Fiche Google · il y a 2 min", "body": "Trois jours pour avoir un devis. Je ne recommande pas." } },
+    { "expr": "calm", "text": "Prenez une heure. Puis répondez en trois phrases. Pas une de plus.",
+      "card": { "kind": "big", "big": "3", "label": "phrases, pas une de plus" } },
+    { "expr": "explain", "text": "Un : remerciez, et nommez le problème. « Merci d'avoir pris le temps, et désolé pour ce délai. »",
+      "card": { "kind": "step", "n": "1", "title": "Remerciez, nommez le problème", "quote": "Merci d'avoir pris le temps, et désolé pour ce délai." } },
+    { "expr": "explain", "text": "Deux : un fait, sans vous justifier. « Cette semaine-là, notre équipe était réduite. »",
+      "card": { "kind": "step", "n": "2", "title": "Un fait, sans vous justifier", "quote": "Cette semaine-là, notre équipe était réduite." } },
+    { "expr": "explain", "text": "Trois : une porte de sortie. « Appelez-moi directement, je veux régler ça avec vous. »",
+      "card": { "kind": "step", "n": "3", "title": "Une porte de sortie", "quote": "Appelez-moi directement, je veux régler ça avec vous." } },
+    { "expr": "calm", "text": "Pourquoi ? Parce que cette réponse, vous ne l'écrivez pas pour lui. Vous l'écrivez pour tous ceux qui la liront avant de vous choisir.",
+      "card": { "kind": "big", "big": "Lue", "label": "par tous vos futurs clients" } },
+    { "expr": "happy", "text": "Et EZIO peut préparer ces réponses pour vous. L'audit est gratuit : lien en bio.",
+      "card": { "kind": "cta", "title": "Audit gratuit", "label": "Lien en bio ↗" } }
+  ]
+}
