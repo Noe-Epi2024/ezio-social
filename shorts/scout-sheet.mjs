@@ -7,12 +7,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const A = (f) => 'file://' + path.join(ROOT, 'assets', f)
 const mark = A('mark-white.svg')
 const poses = [
-  ['Neutre', { expr: 'neutral', loupe: 'hold' }],
-  ['Explique · 2', { expr: 'explain', count: 2, loupe: 'hold', mouth: .6 }],
-  ['Inspecte', { expr: 'think', loupe: 'inspect', look: [1, .2] }],
-  ['Inquiet', { expr: 'worried', loupe: 'hold', mouth: .3, tilt: -4 }],
-  ['Content', { expr: 'happy', loupe: 'raise', wave: .5, mouth: .45 }],
-  ['Waouh', { expr: 'wow', loupe: 'raise', mouth: .8 }],
+  ['Neutre', { expr: 'neutral' }],
+  ['Explique · 2', { expr: 'explain', count: 2, mouth: .6 }],
+  ['Montre', { expr: 'think', rpose: 'point', look: [1, -.6] }],
+  ['Inquiet', { expr: 'worried', mouth: .3, tilt: -4 }],
+  ['Content · coucou', { expr: 'happy', rpose: 'wave', wave: .55, mouth: .45 }],
+  ['Waouh', { expr: 'wow', count: 3, rpose: 'point', mouth: .8 }],
 ]
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Geist;src:url(${A('Geist-Variable.woff2')});font-weight:100 900}
@@ -25,7 +25,7 @@ body{margin:0;width:2400px;height:1500px;background:radial-gradient(1400px 900px
 .c span{font-family:'Geist Mono';font-size:24px;color:#a4adbd;margin-top:16px;letter-spacing:.1em;text-transform:uppercase}
 </style></head><body>
 <div class="t"><h1>Scout</h1><p>Mascotte EZIO · v2 · casque</p></div>
-<div class="hero">${scoutSvg({ id: 'h', expr: 'explain', loupe: 'raise', mouth: .35, markHref: mark, size: 720, glow: .9 })}</div>
+<div class="hero">${scoutSvg({ id: 'h', expr: 'explain', rpose: 'point', count: 1, mouth: .35, markHref: mark, size: 720, glow: .9 })}</div>
 <div class="grid">${poses.map(([n, o], i) => `<div class="c">${scoutSvg({ ...o, id: 'p' + i, markHref: mark, size: 480 })}<span>${n}</span></div>`).join('')}</div>
 </body></html>`
 const out = path.join(ROOT, 'out', 'shorts'); fs.mkdirSync(out, { recursive: true })

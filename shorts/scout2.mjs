@@ -65,9 +65,13 @@ function face(o) {
 }
 
 function arms(p, o) {
-  const count = o.count || 0, wave = o.wave || 0, loupe = o.loupe || 'hold'
-  const L = count || wave ? { s: [-98, 66], e: [-170, 40], h: [-196, -36 - wave * 16], r: -8 + (wave ? Math.sin(wave * Math.PI * 4) * 14 : 0) } : { s: [-98, 66], e: [-158, 120], h: [-160, 190], r: 12 }
-  const R = loupe === 'raise' ? { s: [98, 66], e: [182, 40], h: [196, -22], r: 28 } : loupe === 'inspect' ? { s: [98, 66], e: [164, 64], h: [112, -8], r: -55 } : { s: [98, 66], e: [166, 128], h: [178, 178], r: 20 }
+  const count = o.count || 0, wave = o.wave || 0, loupe = o.loupe || 'none'
+  const L = count || wave ? { s: [-98, 66], e: [-196, 70], h: [-244, -4 - wave * 14], r: -14 + (wave ? Math.sin(wave * Math.PI * 4) * 14 : 0) } : { s: [-98, 66], e: [-158, 120], h: [-160, 190], r: 12 }
+  // bras droit : 'rest' (au repos), 'point' (montre vers le haut, vers la carte), 'wave' (coucou) ; la loupe n'est plus dessinée par défaut
+  const rp = o.rpose || 'rest'
+  const R = loupe === 'raise' ? { s: [98, 66], e: [182, 40], h: [196, -22], r: 28 } : loupe === 'inspect' ? { s: [98, 66], e: [164, 64], h: [112, -8], r: -55 }
+    : rp === 'point' ? { s: [98, 66], e: [196, 70], h: [246, -10], r: 18 } : rp === 'wave' ? { s: [98, 66], e: [196, 70], h: [244, -4 - wave * 14], r: 14 - Math.sin(wave * Math.PI * 4) * 14 }
+    : { s: [98, 66], e: [158, 120], h: [160, 190], r: -12 }
   const seg = (a, b, w) => { const dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy), ang = Math.atan2(dy, dx) * 180 / Math.PI
     return `<g transform="translate(${a[0]} ${a[1]}) rotate(${ang})">${vol(p, `M0 ${-w / 2} L${len} ${-w * .42} A${w * .42} ${w * .42} 0 0 1 ${len} ${w * .42} L0 ${w / 2} A${w / 2} ${w / 2} 0 0 1 0 ${-w / 2}Z`, 'shell', { drop: false, rim: 8 })}<path d="M${len * .3} ${-w / 2 + 3} L${len * .3} ${w / 2 - 3}" stroke="#8f8ab9" stroke-width="2.5" opacity=".7"/></g>` }
   const joint = (x, y, r) => `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#${p}metal)"/><circle cx="${x}" cy="${y}" r="${r * .45}" fill="url(#${p}indigo)"/><circle cx="${x - r * .3}" cy="${y - r * .35}" r="${r * .22}" fill="#fff" opacity=".7"/>`
@@ -89,7 +93,7 @@ function arms(p, o) {
     </g></g>`
   return {
     back: seg(L.s, L.e, 34) + seg(L.e, L.h, 30) + joint(...L.e, 18) + joint(...L.s, 22),
-    front: seg(R.s, R.e, 34) + seg(R.e, R.h, 30) + joint(...R.e, 18) + joint(...R.s, 22) + loupeSvg + hand(R, 0, true),
+    front: seg(R.s, R.e, 34) + seg(R.e, R.h, 30) + joint(...R.e, 18) + joint(...R.s, 22) + (loupe === 'none' ? '' : loupeSvg) + hand(R, loupe === 'none' && rp === 'point' ? 1 : 0, true),
     backHand: hand(L, count, false),
   }
 }

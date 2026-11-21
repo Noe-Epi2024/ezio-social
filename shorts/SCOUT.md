@@ -7,7 +7,7 @@ Décidé avec Noé le 21/11/2026.
 - **Visage** : visière noire brillante, yeux et bouche en LED indigo ; la bouche suit la voix.
 - **Rendu** : pseudo-3D brillant, coque blanc nacré, détails et lumières indigo EZIO.
 - **Bras et mains** : il gesticule, compte sur ses doigts (1, 2, 3), fait coucou.
-- **Signature** : une loupe tenue en main, logo EZIO au centre de la lentille.
+- **Signature** : ~~loupe au logo EZIO~~ retirée le 21/11 à la demande de Noé ; les mains sont libres (repos, montre, coucou, compte 1-2-3).
 - **v2 (validée)** : silhouette « casque » (tête bombée, deux écouteurs à antennes, cœur lumineux sur le torse, bassin segmenté), rendu en relief (lumière principale, occlusion, liseré indigo), détails techniques (vis, joints métalliques, voyants). Niveau de détail validé par Noé.
 - **Expressions** : neutre, explique, inspecte, inquiet, content, waouh.
 
