@@ -1,4 +1,4 @@
-# Scout — mascotte d'EZIO (v1)
+# Scout — mascotte d'EZIO (v2, silhouette « casque »)
 
 Décidé avec Noé le 21/11/2026.
 
@@ -8,6 +8,7 @@ Décidé avec Noé le 21/11/2026.
 - **Rendu** : pseudo-3D brillant, coque blanc nacré, détails et lumières indigo EZIO.
 - **Bras et mains** : il gesticule, compte sur ses doigts (1, 2, 3), fait coucou.
 - **Signature** : une loupe tenue en main, logo EZIO au centre de la lentille.
+- **v2 (validée)** : silhouette « casque » (tête bombée, deux écouteurs à antennes, cœur lumineux sur le torse, bassin segmenté), rendu en relief (lumière principale, occlusion, liseré indigo), détails techniques (vis, joints métalliques, voyants). Niveau de détail validé par Noé.
 - **Expressions** : neutre, explique, inspecte, inquiet, content, waouh.
 
-Code : `scout.mjs` (SVG paramétrable), planche : `node shorts/scout-sheet.mjs`.
+Code : `scout2.mjs` (SVG paramétrable, `variant: 'casque'`) ; `scout.mjs` = v1 abandonnée, planche : `node shorts/scout-sheet.mjs`.

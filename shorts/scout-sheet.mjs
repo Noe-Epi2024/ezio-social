@@ -1,7 +1,8 @@
 // Planche de personnage de Scout : node shorts/scout-sheet.mjs → out/shorts/scout-sheet.png
 import { chromium } from 'playwright-core'
 import fs from 'node:fs'; import path from 'node:path'; import { fileURLToPath } from 'node:url'
-import { scoutSvg } from './scout.mjs'
+import { scoutSvg as base } from './scout2.mjs'
+const scoutSvg = (o) => base({ variant: 'casque', ...o })
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const A = (f) => 'file://' + path.join(ROOT, 'assets', f)
 const mark = A('mark-white.svg')
@@ -23,7 +24,7 @@ body{margin:0;width:2400px;height:1500px;background:radial-gradient(1400px 900px
 .c{background:#16161a99;border:2px solid #26262d;border-radius:28px;height:640px;display:flex;flex-direction:column;align-items:center}
 .c span{font-family:'Geist Mono';font-size:24px;color:#a4adbd;margin-top:16px;letter-spacing:.1em;text-transform:uppercase}
 </style></head><body>
-<div class="t"><h1>Scout</h1><p>Mascotte EZIO · v1</p></div>
+<div class="t"><h1>Scout</h1><p>Mascotte EZIO · v2 · casque</p></div>
 <div class="hero">${scoutSvg({ id: 'h', expr: 'explain', loupe: 'raise', mouth: .35, markHref: mark, size: 720, glow: .9 })}</div>
 <div class="grid">${poses.map(([n, o], i) => `<div class="c">${scoutSvg({ ...o, id: 'p' + i, markHref: mark, size: 480 })}<span>${n}</span></div>`).join('')}</div>
 </body></html>`
