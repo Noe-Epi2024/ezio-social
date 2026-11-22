@@ -1,0 +1,161 @@
+<title>Prompteur Scout</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : une colonne de lecture, les phrases en grand, la phrase active éclairée en indigo, le reste en retrait. */
+:root{
+  --bg:#0a0a0b; --surface:#16161a; --line:#26262d; --ink:#f8fafc; --muted:#8a93a6; --dim:#4a5060; --accent:#a5b4fc; --accent-strong:#4f46e5;
+  --f-display:"Geist",ui-sans-serif,system-ui,sans-serif; --f-mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f8fafc;--surface:#ffffff;--line:#e2e8f0;--ink:#0f172a;--muted:#4b5563;--dim:#a3acbb;--accent:#4338ca;--accent-strong:#4f46e5;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f8fafc;--surface:#ffffff;--line:#e2e8f0;--ink:#0f172a;--muted:#4b5563;--dim:#a3acbb;--accent:#4338ca;--accent-strong:#4f46e5;color-scheme:light}
+
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-display);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 96px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:16px 12px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:22px;font-weight:600;margin:0;letter-spacing:-.01em}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{font:500 14px var(--f-display);color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.tab[aria-selected="true"]{color:#fff;background:var(--accent-strong);border-color:var(--accent-strong)}
+.tab:focus-visible,.btn:focus-visible,.line:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.meta{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta b{color:var(--ink);font-weight:500}
+
+.script{display:flex;flex-direction:column;gap:6px}
+.line{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:18px 0;border:0;background:none;text-align:left;color:var(--dim);cursor:pointer;font:inherit;transition:color .25s}
+.line .n{font-family:var(--f-mono);font-size:14px;padding-top:.55em;color:inherit}
+.line .t{font-size:clamp(24px,5.2vw,36px);line-height:1.28;font-weight:500;letter-spacing:-.01em;text-wrap:pretty;min-width:0}
+.line .q{color:inherit;font-style:normal}
+.line.done{color:var(--muted)}
+.line.on{color:var(--ink)}
+.line.on .n{color:var(--accent)}
+.line.on .q{color:var(--accent)}
+.pause{margin-left:56px;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.pause i{display:block;height:100%;width:0;background:var(--accent)}
+.pause.run i{width:100%;transition:width .6s linear}
+.pause-label{margin-left:56px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+
+.controls{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding-block:12px calc(12px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));z-index:6}
+.controls .row{max-width:760px;margin:0 auto;display:flex;gap:10px;align-items:center}
+.btn{font:600 16px var(--f-display);border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);padding:14px 16px;cursor:pointer}
+.btn.primary{flex:1;background:var(--accent-strong);border-color:var(--accent-strong);color:#fff}
+.timer{font-family:var(--f-mono);font-size:18px;font-variant-numeric:tabular-nums;min-width:64px;text-align:right}
+
+details{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--surface)}
+summary{cursor:pointer;font-weight:600}
+.tips{margin:12px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:8px;color:var(--muted);line-height:1.5;max-width:65ch}
+.tips b{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion: reduce){.pause.run i{transition:none}.line{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="top">
+      <div><div class="eyebrow">@ezio.seo · semaine 48</div><h1 id="title">Prompteur Scout</h1></div>
+      <div class="meta"><span>Cible <b id="target">–</b></span><span>Phrase <b id="pos">–</b></span></div>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+  </header>
+
+  <details open>
+    <summary>Avant d'enregistrer</summary>
+    <ol class="tips">
+      <li><b>Pièce calme</b>, fenêtre fermée, pas de ventilation ni de frigo qui ronronne. Le silence entre deux phrases doit rester un vrai silence.</li>
+      <li><b>Téléphone à une main de la bouche</b> (environ 20 cm), micro vers vous, en mode avion pour éviter les notifications.</li>
+      <li><b>Une demi-seconde de silence entre chaque phrase.</b> Appuyez sur « Suivante » quand vous avez fini : la barre indigo compte la pause pour vous. N'inspirez pas bruyamment pendant cette pause.</li>
+      <li><b>Les guillemets « … » se lisent d'une autre voix</b> : c'est vous qui répondez au client. Un léger changement de ton suffit.</li>
+      <li><b>Une phrase ratée ?</b> Taisez-vous 2 secondes, puis reprenez la phrase depuis le début. Signalez-le en déposant l'audio : je coupe la prise ratée.</li>
+      <li><b>Un fichier par Reel</b>, n'importe quel format (mémo vocal, m4a, mp3, wav), déposé dans la conversation avec le numéro du Reel.</li>
+    </ol>
+  </details>
+
+  <section class="script" id="script" aria-live="polite"></section>
+</div>
+
+<div class="controls">
+  <div class="row">
+    <button class="btn" id="prev" type="button" aria-label="Phrase précédente">←</button>
+    <button class="btn primary" id="next" type="button">Commencer</button>
+    <button class="btn" id="reset" type="button">Reprendre</button>
+    <span class="timer" id="timer">0:00</span>
+  </div>
+</div>
+
+<script>
+const REELS = [
+  { id:"r01", tab:"01 · Avis négatif", slot:"lundi 23 nov., 18 h", target:"≈ 45 s", lines:[
+    "Un avis à une étoile vient de tomber sur votre fiche Google. Surtout, ne répondez pas tout de suite.",
+    "Prenez une heure. Puis répondez en trois phrases. Pas une de plus.",
+    "Un : remerciez, et nommez le problème. « Merci d'avoir pris le temps, et désolé pour ce délai. »",
+    "Deux : un fait, sans vous justifier. « Cette semaine-là, notre équipe était réduite. »",
+    "Trois : une porte de sortie. « Appelez-moi directement, je veux régler ça avec vous. »",
+    "Pourquoi ? Parce que cette réponse, vous ne l'écrivez pas pour lui. Vous l'écrivez pour tous ceux qui la liront avant de vous choisir.",
+    "Et EZIO peut préparer ces réponses pour vous. L'audit est gratuit : lien en bio."]},
+  { id:"r02", tab:"02 · La moyenne ment", slot:"mercredi 25 nov., 18 h", target:"≈ 35 s", lines:[
+    "Votre outil affiche : position moyenne, quatre. Rassurant ? Pas forcément.",
+    "Cette moyenne mélange les rues où vous êtes premier, et celles où personne ne vous voit.",
+    "Or votre client ne voit jamais de moyenne. Il voit trois fiches : celles de sa rue.",
+    "Ce qu'il vous faut, c'est une carte : un point par quartier, et votre rang sur chacun.",
+    "Là où la carte s'éteint, vous savez enfin où agir : la fiche, un post, un article.",
+    "Votre carte, rue par rue : l'audit est gratuit, lien en bio."]},
+  { id:"r03", tab:"03 · Rien d'inventé", slot:"vendredi 27 nov., 18 h", target:"≈ 40 s", lines:[
+    "Un article qui promet un service que vous ne proposez pas, c'est pire que pas d'article du tout.",
+    "Cette semaine, on a resserré la règle : EZIO n'écrit sur vous que ce que dit votre fiche.",
+    "Un : pas de page de contact ? L'article n'en invente pas. Il nomme votre entreprise, c'est tout.",
+    "Deux : la comparaison avec les autres s'arrête là où s'arrêtent vos faits. Rien pour faire nombre.",
+    "Trois : pas de dénigrement. L'autre option se décrit, elle ne se caricature pas.",
+    "Plus votre fiche est complète, plus vos articles ont à dire. L'audit est gratuit : lien en bio."]}
+];
+const $ = (id) => document.getElementById(id);
+const esc = (s) => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+let reel = 0, cur = -1, t0 = null, tick = null, wake = null, busy = false;
+
+function quoteHtml(s){ s = s.replace(/« /g,"«\u00a0").replace(/ ([:;?!»])/g,"\u00a0$1"); return esc(s).replace(/«[^»]*»/g, (m) => '<span class="q">'+m+'</span>'); }
+
+function renderTabs(){
+  $("tabs").innerHTML = REELS.map((r,i) => '<button class="tab" role="tab" type="button" id="tab-'+r.id+'" aria-selected="'+(i===reel)+'">'+esc(r.tab)+'</button>').join("");
+  REELS.forEach((r,i) => $("tab-"+r.id).addEventListener("click", () => { reel = i; try{ location.hash = r.id }catch(e){} reset(); renderTabs(); }));
+}
+function renderScript(){
+  const r = REELS[reel];
+  $("title").textContent = r.tab.replace(/^\d+ · /,"") + " · " + r.slot;
+  $("target").textContent = r.target;
+  $("script").innerHTML = r.lines.map((l,i) =>
+    '<button type="button" class="line'+(i<cur?' done':'')+(i===cur?' on':'')+'" id="l'+i+'"><span class="n">'+String(i+1).padStart(2,"0")+'</span><span class="t">'+quoteHtml(l)+'</span></button>'
+    + (i < r.lines.length-1 ? '<div class="pause" id="p'+i+'"><i></i></div><div class="pause-label">pause · 0,5 s</div>' : '')
+  ).join("");
+  r.lines.forEach((_,i) => $("l"+i).addEventListener("click", () => go(i)));
+  $("pos").textContent = cur < 0 ? "–" : (cur+1)+" / "+r.lines.length;
+  $("next").textContent = cur < 0 ? "Commencer" : cur >= r.lines.length-1 ? "Terminer" : "Suivante";
+}
+function go(i){ cur = i; renderScript(); const el = $("l"+i); if(el) el.scrollIntoView({block:"center",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); }
+function startTimer(){
+  if(t0) return; t0 = Date.now();
+  tick = setInterval(() => { const s = Math.floor((Date.now()-t0)/1000); $("timer").textContent = Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); }, 250);
+  try{ navigator.wakeLock?.request("screen").then(w => wake = w).catch(()=>{}); }catch(e){}
+}
+function next(){
+  const r = REELS[reel]; if(busy) return;
+  if(cur < 0){ startTimer(); go(0); return; }
+  if(cur >= r.lines.length-1){ clearInterval(tick); tick=null; cur = r.lines.length; renderScript(); $("next").textContent="Terminé"; try{ wake?.release() }catch(e){} return; }
+  const bar = $("p"+cur); busy = true;
+  $("l"+cur).classList.replace("on","done");
+  if(bar){ void bar.offsetWidth; bar.classList.add("run"); }
+  setTimeout(() => { busy = false; go(cur+1); }, 600);
+}
+function reset(){ cur = -1; t0 = null; clearInterval(tick); tick = null; busy = false; $("timer").textContent = "0:00"; try{ wake?.release() }catch(e){} renderScript(); window.scrollTo({top:0}); }
+
+$("next").addEventListener("click", next);
+$("prev").addEventListener("click", () => { if(cur > 0) go(cur-1); });
+$("reset").addEventListener("click", reset);
+document.addEventListener("keydown", (e) => { if(e.target.closest && e.target.closest("button") && e.key===" ") return; if(e.key===" "||e.key==="ArrowDown"||e.key==="ArrowRight"){ e.preventDefault(); next(); } if(e.key==="ArrowUp"||e.key==="ArrowLeft"){ if(cur>0) go(cur-1); } });
+function fromHash(){ const i = REELS.findIndex(r => "#"+r.id === location.hash); if(i >= 0){ reel = i; } }
+window.addEventListener("hashchange", () => { fromHash(); reset(); renderTabs(); });
+fromHash(); renderTabs(); renderScript();
+</script>
