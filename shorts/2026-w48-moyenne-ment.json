@@ -1,0 +1,45 @@
+{
+  "id": "short-02-moyenne-ment",
+  "rubrique": "Le radar",
+  "eyebrow": "Le radar",
+  "note": "Exemple illustratif",
+  "audio": null,
+  "segments": [
+    {
+      "expr": "think",
+      "text": "Votre outil affiche : position moyenne, quatre. Rassurant ? Pas forcément.",
+      "card": { "kind": "big", "big": "4", "label": "de position moyenne" },
+      "pose": { "rpose": "rest" }
+    },
+    {
+      "expr": "explain",
+      "text": "Cette moyenne mélange les rues où vous êtes premier, et celles où personne ne vous voit.",
+      "card": { "kind": "big", "big": "1 ou 20+", "label": "selon la rue" },
+      "pose": { "rpose": "point" }
+    },
+    {
+      "expr": "worried",
+      "text": "Or votre client ne voit jamais de moyenne. Il voit trois fiches : celles de sa rue.",
+      "card": { "kind": "big", "big": "3", "label": "fiches dans la rue du client" },
+      "pose": { "count": 3 }
+    },
+    {
+      "expr": "explain",
+      "text": "Ce qu'il vous faut, c'est une carte : un point par quartier, et votre rang sur chacun.",
+      "card": { "kind": "big", "big": "1 point", "label": "= 1 quartier mesuré" },
+      "pose": { "rpose": "point" }
+    },
+    {
+      "expr": "wow",
+      "text": "Là où la carte s'éteint, vous savez enfin où agir : la fiche, un post, un article.",
+      "card": { "kind": "big", "big": "Ici", "label": "là où la carte s'éteint" },
+      "pose": { "rpose": "point" }
+    },
+    {
+      "expr": "happy",
+      "text": "Votre carte, rue par rue : l'audit est gratuit, lien en bio.",
+      "card": { "kind": "cta", "title": "Audit gratuit", "label": "Lien en bio ↗" },
+      "pose": { "rpose": "wave" }
+    }
+  ]
+}

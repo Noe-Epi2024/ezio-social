@@ -1,0 +1,198 @@
+{
+ "week": "2026-w48",
+ "items": [
+  {
+   "id": "story-lun",
+   "format": "story",
+   "slides": [
+    {
+     "kind": "text",
+     "eyebrow": "Visibilité IA",
+     "title": "Demandez à l'IA *qui* choisir.",
+     "bullets": [
+      "Tapez votre métier et votre ville.",
+      "Lisez les noms cités. Le vôtre y est ?",
+      "Le test complet est dans notre post de demain."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "post-mar-visibilite-ia",
+   "format": "post",
+   "slides": [
+    {
+     "kind": "hook",
+     "eyebrow": "Visibilité IA",
+     "page": "01/05",
+     "title": "Les assistants IA citent-ils *votre* nom ?"
+    },
+    {
+     "kind": "text",
+     "eyebrow": "Visibilité IA",
+     "page": "02/05",
+     "title": "Le test, en *2 minutes*.",
+     "bullets": [
+      "Ouvrez ChatGPT, Gemini ou Perplexity.",
+      "Demandez : « un [votre métier] à [votre ville], lequel me conseilles-tu ? »",
+      "Notez qui est cité, et si vous l'êtes."
+     ]
+    },
+    {
+     "kind": "text",
+     "eyebrow": "Visibilité IA",
+     "page": "03/05",
+     "title": "Ce qu'ils peuvent *lire* de vous.",
+     "bullets": [
+      "Votre fiche Google : catégorie, horaires, description.",
+      "Vos avis : leur nombre, leur fraîcheur, vos réponses.",
+      "Des pages qui disent clairement ce que vous faites, et où."
+     ]
+    },
+    {
+     "kind": "text",
+     "eyebrow": "Visibilité IA",
+     "page": "04/05",
+     "title": "Pas de recette *secrète*.",
+     "bullets": [
+      "Aucun format spécial n'est exigé pour être repris.",
+      "Une fiche complète et un site clair servent Google et les assistants à la fois.",
+      "Refaites le test chaque mois, avec les mêmes questions."
+     ]
+    },
+    {
+     "kind": "cta",
+     "page": "05/05",
+     "eyebrow": "Votre tour",
+     "title": "Cité, vous ou votre *concurrent* ?",
+     "body": "Audit gratuit de votre visibilité Google, point par point."
+    }
+   ]
+  },
+  {
+   "id": "post-jeu-article-sur-place",
+   "format": "post",
+   "slides": [
+    {
+     "kind": "hook",
+     "eyebrow": "Auto-healing",
+     "page": "01/05",
+     "title": "Un article qui décroche se répare *sur place*."
+    },
+    {
+     "kind": "text",
+     "eyebrow": "Auto-healing",
+     "page": "02/05",
+     "title": "Même adresse, même *titre*.",
+     "bullets": [
+      "Un mot-clé chute et son article est en ligne : EZIO le met à jour.",
+      "L'adresse, le titre et la date de publication restent ceux d'origine.",
+      "Le texte répond aux recherches pour lesquelles Google montre déjà la page."
+     ]
+    },
+    {
+     "kind": "text",
+     "eyebrow": "Auto-healing",
+     "page": "03/05",
+     "title": "Jamais *moins bien* qu'avant.",
+     "bullets": [
+      "La nouvelle version passe le même contrôle qualité que tout article.",
+      "Moins bien notée que l'actuelle ? L'article en ligne reste intact.",
+      "Et le crédit vous est rendu."
+     ]
+    },
+    {
+     "kind": "text",
+     "eyebrow": "Auto-healing",
+     "page": "04/05",
+     "title": "Des *garde-fous*.",
+     "bullets": [
+      "Un article en ligne depuis moins de 28 jours n'est pas touché.",
+      "Pas deux mises à jour automatiques en 30 jours.",
+      "Vous l'avez modifié vous-même ? EZIO ne le réécrit pas sans votre clic."
+     ]
+    },
+    {
+     "kind": "cta",
+     "page": "05/05",
+     "eyebrow": "Votre tour",
+     "title": "Voyez ce qu'EZIO surveillerait chez vous.",
+     "body": "Audit gratuit de votre visibilité Google, point par point."
+    }
+   ]
+  },
+  {
+   "id": "story-ven",
+   "format": "story",
+   "slides": [
+    {
+     "kind": "text",
+     "theme": "jour",
+     "eyebrow": "Geste SEO local",
+     "title": "Vos horaires de *fêtes* sont-ils sur Google ?",
+     "bullets": [
+      "Dans votre fiche : Modifier le profil, puis Horaires exceptionnels.",
+      "Un jour, une ligne : fermé, ou ouvert de telle à telle heure.",
+      "Le pas-à-pas est dans notre post de demain."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "post-sam-horaires",
+   "format": "post",
+   "slides": [
+    {
+     "kind": "hook",
+     "theme": "jour",
+     "eyebrow": "Geste SEO local",
+     "page": "01/05",
+     "title": "Fermé le 25 ? Dites-le *à Google*."
+    },
+    {
+     "kind": "text",
+     "theme": "jour",
+     "eyebrow": "Geste SEO local",
+     "page": "02/05",
+     "title": "Les horaires *exceptionnels*.",
+     "bullets": [
+      "Une rubrique à part de votre fiche Google.",
+      "Elle remplace vos horaires habituels pour un jour précis, et seulement ce jour-là.",
+      "Vos horaires de la semaine, eux, ne bougent pas."
+     ]
+    },
+    {
+     "kind": "text",
+     "theme": "jour",
+     "eyebrow": "Geste SEO local",
+     "page": "03/05",
+     "title": "Pourquoi c'est *important*.",
+     "bullets": [
+      "Un client qui trouve porte close ne revient pas, et il peut laisser un avis.",
+      "Autour des jours fériés, Google peut prévenir que vos horaires « peuvent différer ».",
+      "Les renseigner montre que votre fiche est tenue à jour."
+     ]
+    },
+    {
+     "kind": "text",
+     "theme": "jour",
+     "eyebrow": "Geste SEO local",
+     "page": "04/05",
+     "title": "À faire *avant* les fêtes.",
+     "bullets": [
+      "Listez vos jours : 24, 25 et 31 décembre, 1er janvier, congés.",
+      "Saisissez-les maintenant, pas la veille.",
+      "Ouvert normalement un jour férié ? Confirmez-le aussi : c'est une information."
+     ]
+    },
+    {
+     "kind": "cta",
+     "page": "05/05",
+     "eyebrow": "Votre tour",
+     "title": "Votre fiche est-elle prête pour *décembre* ?",
+     "body": "Audit gratuit de votre fiche Google, point par point."
+    }
+   ]
+  }
+ ]
+}

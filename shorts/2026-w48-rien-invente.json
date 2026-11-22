@@ -1,0 +1,45 @@
+{
+  "id": "short-03-rien-invente",
+  "rubrique": "En coulisses",
+  "eyebrow": "En coulisses",
+  "note": "@ezio.seo",
+  "audio": null,
+  "segments": [
+    {
+      "expr": "worried",
+      "text": "Un article qui promet un service que vous ne proposez pas, c'est pire que pas d'article du tout.",
+      "card": { "kind": "big", "big": "Faux", "label": "une promesse jamais faite" },
+      "pose": { "rpose": "rest" }
+    },
+    {
+      "expr": "explain",
+      "text": "Cette semaine, on a resserré la règle : EZIO n'écrit sur vous que ce que dit votre fiche.",
+      "card": { "kind": "big", "big": "Fiche", "label": "la seule source de vos promesses" },
+      "pose": { "rpose": "point" }
+    },
+    {
+      "expr": "explain",
+      "text": "Un : pas de page de contact ? L'article n'en invente pas. Il nomme votre entreprise, c'est tout.",
+      "card": { "kind": "step", "n": "1", "title": "Aucun contact inventé", "quote": "Il nomme votre entreprise, c'est tout." },
+      "pose": { "count": 1 }
+    },
+    {
+      "expr": "explain",
+      "text": "Deux : la comparaison avec les autres s'arrête là où s'arrêtent vos faits. Rien pour faire nombre.",
+      "card": { "kind": "step", "n": "2", "title": "Pas de comparaison gonflée", "quote": "Autant de points que de faits, pas plus." },
+      "pose": { "count": 2 }
+    },
+    {
+      "expr": "explain",
+      "text": "Trois : pas de dénigrement. L'autre option se décrit, elle ne se caricature pas.",
+      "card": { "kind": "step", "n": "3", "title": "Pas de dénigrement", "quote": "L'autre option se décrit, sans caricature." },
+      "pose": { "count": 3 }
+    },
+    {
+      "expr": "happy",
+      "text": "Plus votre fiche est complète, plus vos articles ont à dire. L'audit est gratuit : lien en bio.",
+      "card": { "kind": "cta", "title": "Audit gratuit", "label": "Lien en bio ↗" },
+      "pose": { "rpose": "wave" }
+    }
+  ]
+}
