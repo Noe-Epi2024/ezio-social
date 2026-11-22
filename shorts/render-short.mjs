@@ -1,5 +1,5 @@
 // Short vertical avec mascotte EZIO synchronisée sur une voix.
-// Usage : node shorts/render-short.mjs shorts/s01-avis-negatif.json [voix.wav|m4a|mp3] [--preview] [--cuts t1,t2,…] [--music piste]
+// Usage : node shorts/render-short.mjs shorts/s01-avis-negatif.json [voix.wav|m4a|mp3] [--preview] [--cuts t1,t2,…] [--words mots.json] [--music piste]
 //   - avec un fichier audio : la bouche suit l'énergie de la voix, les segments du script
 //     sont calés sur les pauses détectées (marquer ~0,5 s de pause entre chaque phrase) ;
 //   - sans audio : aperçu muet, durées estimées et bouche simulée.
@@ -15,9 +15,11 @@ const A = (f) => 'file://' + path.join(ROOT, 'assets', f)
 const FPS = 30, W = 1080, H = 1920
 const args = process.argv.slice(2)
 const spec = JSON.parse(fs.readFileSync(args[0], 'utf8'))
-const audio = args.find((a, i) => i > 0 && !a.startsWith('--') && args[i - 1] !== '--music' && args[i - 1] !== '--cuts') || spec.audio || null
+const audio = args.find((a, i) => i > 0 && !a.startsWith('--') && args[i - 1] !== '--music' && args[i - 1] !== '--cuts' && args[i - 1] !== '--words') || spec.audio || null
 // --cuts 5.06,9.56,… : frontières de phrases connues (milieu de chaque pause), quand la détection automatique hésite
 const ci = args.indexOf('--cuts'), cuts = ci > 0 ? args[ci + 1].split(',').map(Number) : null
+// --words fichier.json : instant de chaque mot, phrase par phrase (écrit par tts-voice.py), pour des sous-titres calés sur la voix
+const wi = args.indexOf('--words'), words = wi > 0 ? JSON.parse(fs.readFileSync(args[wi + 1], 'utf8')) : null
 const preview = args.includes('--preview')
 
 // ---------- 1. Énergie de la voix, image par image ----------
@@ -120,7 +122,7 @@ html,body{margin:0;background:#0a0a0b}
 </div>
 <script>${SCOUT_SRC}</script><script>
 const MARK='${A('mark-white.svg')}';
-const SEG=${JSON.stringify(spec.segments)}, TIMES=${JSON.stringify(times)}, MOUTH=${JSON.stringify(mouth)}, FPS=${FPS}, DUR=${duration};
+const WORDS=${JSON.stringify(words)}, SEG=${JSON.stringify(spec.segments)}, TIMES=${JSON.stringify(times)}, MOUTH=${JSON.stringify(mouth)}, FPS=${FPS}, DUR=${duration};
 const $=id=>document.getElementById(id);
 const ease=x=>1-Math.pow(1-Math.min(1,Math.max(0,x)),3);
 const spring=x=>{x=Math.min(1,Math.max(0,x));return 1-Math.exp(-6*x)*Math.cos(10*x)};
@@ -133,7 +135,8 @@ function cardHtml(c){
 $('cards').innerHTML=SEG.map((s,i)=>'<div class="card'+(s.card.kind==='cta'?' cta':'')+'" id="c'+i+'" style="opacity:0">'+cardHtml(s.card)+'</div>').join('');
 // découpage des sous-titres : groupes de ~5 mots, mots répartis au prorata des lettres
 const CAP=SEG.map((s,i)=>{const words=s.text.replace(/[«»]/g,'').split(/\\s+/).filter(Boolean);const T=TIMES[i];const tot=words.reduce((a,w)=>a+w.length+1,0);let acc=0;
-  const ws=words.map(w=>{const a=T.start+(T.end-T.start)*acc/tot;acc+=w.length+1;return{w,t:a}});const groups=[];
+  const W=WORDS&&WORDS[i]&&WORDS[i].length===words.length?WORDS[i]:null;
+  const ws=words.map((w,k)=>{const a=T.start+(T.end-T.start)*acc/tot;acc+=w.length+1;return{w,t:W?W[k]:a}});const groups=[];
   for(let k=0;k<ws.length;){let g=[ws[k++]];while(k<ws.length&&g.length<5&&!/[.:?!]$/.test(g.at(-1).w))g.push(ws[k++]);groups.push(g)}return groups});
 window.render=function(f){
   const t=f/FPS; $('bar').style.width=(100*t/DUR)+'%';
