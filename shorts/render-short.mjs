@@ -1,5 +1,5 @@
 // Short vertical avec mascotte EZIO synchronisée sur une voix.
-// Usage : node shorts/render-short.mjs shorts/s01-avis-negatif.json [voix.wav|m4a|mp3] [--preview]
+// Usage : node shorts/render-short.mjs shorts/s01-avis-negatif.json [voix.wav|m4a|mp3] [--preview] [--cuts t1,t2,…] [--music piste]
 //   - avec un fichier audio : la bouche suit l'énergie de la voix, les segments du script
 //     sont calés sur les pauses détectées (marquer ~0,5 s de pause entre chaque phrase) ;
 //   - sans audio : aperçu muet, durées estimées et bouche simulée.
@@ -15,7 +15,9 @@ const A = (f) => 'file://' + path.join(ROOT, 'assets', f)
 const FPS = 30, W = 1080, H = 1920
 const args = process.argv.slice(2)
 const spec = JSON.parse(fs.readFileSync(args[0], 'utf8'))
-const audio = args.find((a, i) => i > 0 && !a.startsWith('--') && args[i - 1] !== '--music') || spec.audio || null
+const audio = args.find((a, i) => i > 0 && !a.startsWith('--') && args[i - 1] !== '--music' && args[i - 1] !== '--cuts') || spec.audio || null
+// --cuts 5.06,9.56,… : frontières de phrases connues (milieu de chaque pause), quand la détection automatique hésite
+const ci = args.indexOf('--cuts'), cuts = ci > 0 ? args[ci + 1].split(',').map(Number) : null
 const preview = args.includes('--preview')
 
 // ---------- 1. Énergie de la voix, image par image ----------
@@ -51,6 +53,15 @@ function segmentTimes(env, duration, segs) {
   return segs.map((s, i) => ({ start: bounds[i], end: bounds[i + 1] }))
 }
 
+function cutTimes(env, duration, cuts, segs) {
+  if (cuts.length !== segs.length - 1) throw new Error(`--cuts : ${segs.length - 1} frontières attendues, ${cuts.length} reçues`)
+  const thr = 0.12, on = (f) => env[f] >= thr
+  let a = 0; while (a < env.length && !on(a)) a++
+  let b = env.length - 1; while (b > 0 && !on(b)) b--
+  const bounds = [a / FPS, ...cuts, Math.min(duration, (b + 1) / FPS)]
+  return segs.map((s, i) => ({ start: bounds[i], end: bounds[i + 1] }))
+}
+
 function fakeTimeline(segs) {
   let t = 0.4; const times = [], env = []
   for (const s of segs) { const d = s.text.split(/\s+/).length / 2.7; times.push({ start: t, end: t + d }); t += d + 0.5 }
@@ -64,7 +75,7 @@ function fakeTimeline(segs) {
 }
 
 let env, duration, times
-if (audio) { ({ env, duration } = envelopeFromAudio(audio)); times = segmentTimes(env, duration, spec.segments); duration += 0.6 }
+if (audio) { ({ env, duration } = envelopeFromAudio(audio)); times = cuts ? cutTimes(env, duration, cuts, spec.segments) : segmentTimes(env, duration, spec.segments); duration += 0.6 }
 else ({ env, duration, times } = fakeTimeline(spec.segments))
 const nFrames = Math.ceil(duration * FPS)
 // lissage léger (attaque rapide, relâche douce) pour une bouche qui ne tremble pas
