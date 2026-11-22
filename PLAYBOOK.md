@@ -63,13 +63,20 @@ Scout, la mascotte (design system « EZIO Instagram », § 10 et 11), présente 
 
 1. **Dimanche, dans la session hebdomadaire** : en plus du lot, rédiger 2 à 3 scripts de 30 à 50 s (une phrase par carte, 7 cartes au plus, la dernière = audit gratuit, lien en bio). Une spec par Reel : `shorts/AAAA-wNN-<id>.json` (format de `shorts/s01-avis-negatif.json` : texte, carte, expression et geste de chaque phrase). Envoyer à Noé le texte à lire, phrase par phrase, avec la consigne : une demi-seconde de silence entre chaque phrase, pièce calme.
 2. **Rotation** : les Reels suivent les 5 rubriques comme les posts, sans reprendre un sujet de `state.json` ni le sujet d'un post de la même semaine. Le short « avis négatif » (`shorts/s01-avis-negatif.json`) attend sa voix : le placer en premier.
-3. **Montage** quand Noé dépose ses audios dans la conversation :
+3. **Voix de synthèse (décidé avec Noé le 22/11/2026)** : Noé n'enregistre plus. La voix de Scout est la voix « Charon » de la synthèse vocale de Google (`gemini-3.8-flash-tts`), générée phrase par phrase :
+   `GEMINI_API_KEY=… python3 shorts/tts-voice.py shorts/<spec>.json out/voix/<id>.wav`, puis le montage avec `--cuts` ci-dessous.
+   - Prérequis : `generativelanguage.googleapis.com` autorisé dans les domaines de Claude, et une clé AI Studio fournie par Noé pour la session. La clé ne s'écrit jamais dans le dépôt ; sans clé, prévenir Noé et ne pas publier de Reel.
+   - L'offre gratuite limite à quelques requêtes par minute : générer les Reels l'un après l'autre (le script attend sur un 429).
+   - Une prise trop longue a répété un morceau : le script garde la prise de durée plausible. Si une phrase échoue toujours, la reformuler (S48 : « Votre carte, rue par rue » bouclait sur « rue par rue »).
+   - Chaque légende de Reel finit par « Voix de synthèse. » avant les hashtags (l'API ne permet pas de cocher « Infos IA »).
+   - Envoyer à Noé la vidéo finale : il valide la voix à l'écoute, Claude ne peut pas écouter.
+4. **Montage** d'un audio fourni par Noé (ancienne méthode, si jamais il enregistre de nouveau) :
    - D'abord le nettoyage : `python3 shorts/clean-voice.py <audio> out/voix/<id>.wav [début-fin]`. Il resserre les pauses à 0,65 s, atténue le ton de pièce, réduit le souffle et met la voix à -16 LUFS. Il écrit aussi `<id>.wav.cuts`, les frontières de phrases. Une prise ratée se retire en donnant son intervalle (S48, Reel 03 : `31.0-36.0`) ; pour la repérer, comparer les durées des blocs aux phrases du script.
    - Puis le montage : `node shorts/render-short.mjs shorts/<spec>.json out/voix/<id>.wav --cuts $(cat out/voix/<id>.wav.cuts) [--music assets/music/<piste>]`. Toujours passer `--cuts` : sans lui, la détection automatique a pris une pause interne pour une fin de phrase sur 2 Reels sur 3 en S48 (cartes décalées d'une seconde).
    - Regarder 6 images extraites du MP4 avant de soumettre : la carte doit correspondre au sous-titre.
-4. **Musique** : une nappe libre de droits très basse sous la voix (`--music`), uniquement depuis `assets/music/`, des pistes fournies par Noé avec leur licence notée dans `assets/music/LICENCES.md`. Aucune musique sans licence écrite. Pas de piste disponible : voix seule.
-5. **Hébergement** : copier le MP4 et sa couverture dans `public/AAAA-wNN/<id>/`, push, vérifier les URL (200). Le MP4 sort en `application/octet-stream` sur raw.githubusercontent, ce qu'Instagram a accepté le 17/11 (Reel 01).
-6. **Soumission et publication** : comme les posts (règle 1 non négociable) : vidéo, couverture et légende complète envoyées à Noé, accord explicite, puis rappel `send_later` au créneau avec l'appel exact `create_video_post` (`video_url`, `cover_url`, `caption`, `share_to_feed: true`).
+5. **Musique** : une nappe libre de droits très basse sous la voix (`--music`), uniquement depuis `assets/music/`, des pistes fournies par Noé avec leur licence notée dans `assets/music/LICENCES.md`. Aucune musique sans licence écrite. Pas de piste disponible : voix seule.
+6. **Hébergement** : copier le MP4 et sa couverture dans `public/AAAA-wNN/<id>/`, push, vérifier les URL (200). Le MP4 sort en `application/octet-stream` sur raw.githubusercontent, ce qu'Instagram a accepté le 17/11 (Reel 01).
+7. **Soumission et publication** : comme les posts (règle 1 non négociable) : vidéo, couverture et légende complète envoyées à Noé, accord explicite, puis rappel `send_later` au créneau avec l'appel exact `create_video_post` (`video_url`, `cover_url`, `caption`, `share_to_feed: true`).
 
 ## Légendes
 

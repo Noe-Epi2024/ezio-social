@@ -37,7 +37,7 @@
     },
     {
       "expr": "happy",
-      "text": "Votre carte, rue par rue : l'audit est gratuit, lien en bio.",
+      "text": "Voyez votre propre carte : l'audit est gratuit, lien en bio.",
       "card": { "kind": "cta", "title": "Audit gratuit", "label": "Lien en bio ↗" },
       "pose": { "rpose": "wave" }
     }
