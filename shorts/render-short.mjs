@@ -15,7 +15,7 @@ const A = (f) => 'file://' + path.join(ROOT, 'assets', f)
 const FPS = 30, W = 1080, H = 1920
 const args = process.argv.slice(2)
 const spec = JSON.parse(fs.readFileSync(args[0], 'utf8'))
-const audio = args.find((a, i) => i > 0 && !a.startsWith('--')) || spec.audio || null
+const audio = args.find((a, i) => i > 0 && !a.startsWith('--') && args[i - 1] !== '--music') || spec.audio || null
 const preview = args.includes('--preview')
 
 // ---------- 1. Énergie de la voix, image par image ----------
@@ -23,7 +23,7 @@ function envelopeFromAudio(file) {
   const raw = execFileSync('ffmpeg', ['-v', 'error', '-i', file, '-ac', '1', '-ar', '16000', '-f', 's16le', '-'], { maxBuffer: 1 << 30 })
   const pcm = new Int16Array(raw.buffer, raw.byteOffset, raw.length / 2)
   const per = 16000 / FPS, n = Math.floor(pcm.length / per), env = new Float32Array(n)
-  for (let f = 0; f < n; f++) { let s = 0; for (let i = f * per; i < (f + 1) * per; i++) s += pcm[i] * pcm[i]; env[f] = Math.sqrt(s / per) }
+  for (let f = 0; f < n; f++) { const a = Math.floor(f * per), b = Math.floor((f + 1) * per); let s = 0; for (let i = a; i < b; i++) s += pcm[i] * pcm[i]; env[f] = Math.sqrt(s / (b - a)) }
   const sorted = [...env].sort((a, b) => a - b), ref = sorted[Math.floor(n * 0.95)] || 1
   return { env: env.map((v) => Math.min(1, v / ref)), duration: pcm.length / 16000 }
 }
@@ -168,7 +168,13 @@ await page.screenshot({ path: path.join(ROOT, 'out', 'shorts', `${spec.id}-cover
 await browser.close()
 const mp4 = path.join(ROOT, 'out', 'shorts', `${spec.id}${audio ? '' : '-apercu'}.mp4`)
 const ff = ['-v', 'error', '-y', '-framerate', String(FPS / step), '-i', path.join(outDir, 'f%05d.jpg')]
-if (audio) ff.push('-i', audio, '-c:a', 'aac', '-b:a', '160k', '-af', 'apad=pad_dur=0.6')
+const mi = args.indexOf('--music'), music = mi > 0 ? args[mi + 1] : spec.music || null
+if (audio && music) {
+  // nappe musicale très basse sous la voix, fondue en entrée et en sortie, coupée à la durée de la vidéo
+  ff.push('-i', audio, '-stream_loop', '-1', '-i', music, '-filter_complex',
+    `[1:a]apad=pad_dur=0.6[v];[2:a]volume=0.07,afade=t=in:d=1,afade=t=out:st=${(duration - 1.5).toFixed(2)}:d=1.5,atrim=0:${duration.toFixed(2)}[m];[v][m]amix=inputs=2:duration=first:normalize=0[a]`,
+    '-map', '0:v', '-map', '[a]', '-c:a', 'aac', '-b:a', '160k')
+} else if (audio) ff.push('-i', audio, '-c:a', 'aac', '-b:a', '160k', '-af', 'apad=pad_dur=0.6')
 ff.push('-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '20', '-movflags', '+faststart', '-shortest', mp4)
 execFileSync('ffmpeg', ff)
 fs.rmSync(outDir, { recursive: true, force: true })

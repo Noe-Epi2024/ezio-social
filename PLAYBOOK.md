@@ -16,10 +16,15 @@ Ce fichier est la source de vérité des tâches hebdomadaires. Le compte est **
 | Jour | Contenu | Créneau Paris |
 | --- | --- | --- |
 | Lundi | Story | 12 h 00 |
+| Lundi | Reel Scout | 18 h 00 |
 | Mardi | Post (carrousel de préférence) | 12 h 00 |
+| Mercredi | Reel Scout | 18 h 00 |
 | Jeudi | Post | 12 h 00 |
-| Vendredi | Story | 18 h 00 |
+| Vendredi | Story | 12 h 00 |
+| Vendredi | Reel Scout | 18 h 00 |
 | Samedi | Post | 10 h 00 |
+
+Décidé avec Noé le 22/11/2026 : 2 à 3 Reels Scout par semaine **en plus** des 3 posts et 2 stories. La story du vendredi passe de 18 h à 12 h pour laisser 18 h au Reel. Si Noé n'enregistre que deux voix, on garde lundi et mercredi.
 
 Paris est à UTC+1 en hiver, UTC+2 en été ; Melbourne à UTC+11 en été austral, UTC+10 sinon. Calculer chaque créneau en UTC au moment de planifier.
 
@@ -51,6 +56,17 @@ Une semaine type : 1 Geste SEO local (thème Jour, pour rythmer la grille du pro
 - Regarder chaque JPEG rendu avant de le proposer : texte qui déborde, chevauchement avec le pied de slide, faute.
 - Copier les JPEG dans `public/AAAA-wNN/<id>/<n>.jpg`, commit, push sur `main`. URL publique : `https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/main/public/...` — vérifier avec `curl -sI` (200, `content-type: image/jpeg`) **avant** de proposer la publication.
 - **Vidéos (Reels)** : raw.githubusercontent sert les `.mp4` en `application/octet-stream` (vérifié le 14/11). Tenter l'URL raw ; si Windsor/Instagram la refuse, utiliser l'URL GitHub Pages `https://noe-epi2024.github.io/ezio-social/public/...` (à condition que Noé ait activé Pages : Settings → Pages → branche `main`, dossier `/`), sinon prévenir Noé. Ne jamais inventer une autre forme d'hébergement.
+
+## Reels Scout (voix de Noé)
+
+Scout, la mascotte (design system « EZIO Instagram », § 10 et 11), présente chaque Reel avec la voix de Noé.
+
+1. **Dimanche, dans la session hebdomadaire** : en plus du lot, rédiger 2 à 3 scripts de 30 à 50 s (une phrase par carte, 7 cartes au plus, la dernière = audit gratuit, lien en bio). Une spec par Reel : `shorts/AAAA-wNN-<id>.json` (format de `shorts/s01-avis-negatif.json` : texte, carte, expression et geste de chaque phrase). Envoyer à Noé le texte à lire, phrase par phrase, avec la consigne : une demi-seconde de silence entre chaque phrase, pièce calme.
+2. **Rotation** : les Reels suivent les 5 rubriques comme les posts, sans reprendre un sujet de `state.json` ni le sujet d'un post de la même semaine. Le short « avis négatif » (`shorts/s01-avis-negatif.json`) attend sa voix : le placer en premier.
+3. **Montage** quand Noé dépose ses audios dans la conversation : `node shorts/render-short.mjs shorts/<spec>.json <audio> [--music assets/music/<piste>]`. Vérifier les segments détectés (une frontière par pause) et regarder 6 images extraites du MP4 avant de soumettre. Si une frontière tombe mal, corriger le découpage plutôt que de publier un décalage.
+4. **Musique** : une nappe libre de droits très basse sous la voix (`--music`), uniquement depuis `assets/music/`, des pistes fournies par Noé avec leur licence notée dans `assets/music/LICENCES.md`. Aucune musique sans licence écrite. Pas de piste disponible : voix seule.
+5. **Hébergement** : copier le MP4 et sa couverture dans `public/AAAA-wNN/<id>/`, push, vérifier les URL (200). Le MP4 sort en `application/octet-stream` sur raw.githubusercontent, ce qu'Instagram a accepté le 17/11 (Reel 01).
+6. **Soumission et publication** : comme les posts (règle 1 non négociable) : vidéo, couverture et légende complète envoyées à Noé, accord explicite, puis rappel `send_later` au créneau avec l'appel exact `create_video_post` (`video_url`, `cover_url`, `caption`, `share_to_feed: true`).
 
 ## Légendes
 
