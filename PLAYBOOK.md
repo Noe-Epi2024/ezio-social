@@ -61,8 +61,8 @@ Une semaine type : 1 Geste SEO local (thème Jour, pour rythmer la grille du pro
 
 Scout, la mascotte (design system « EZIO Instagram », § 10 et 11), présente chaque Reel avec la voix de Noé.
 
-1. **Dimanche, dans la session hebdomadaire** : en plus du lot, rédiger 2 à 3 scripts de 30 à 50 s (une phrase par carte, 7 cartes au plus, la dernière = audit gratuit, lien en bio). Une spec par Reel : `shorts/AAAA-wNN-<id>.json` (format de `shorts/s01-avis-negatif.json` : texte, carte, expression et geste de chaque phrase). Envoyer à Noé le texte à lire, phrase par phrase, avec la consigne : une demi-seconde de silence entre chaque phrase, pièce calme.
-2. **Rotation** : les Reels suivent les 5 rubriques comme les posts, sans reprendre un sujet de `state.json` ni le sujet d'un post de la même semaine. Le short « avis négatif » (`shorts/s01-avis-negatif.json`) attend sa voix : le placer en premier.
+1. **Dimanche, dans la session hebdomadaire** : en plus du lot, rédiger 2 à 3 scripts de 30 à 50 s (une phrase par carte, 7 cartes au plus, la dernière = audit gratuit, lien en bio). Une spec par Reel : `shorts/AAAA-wNN-<id>.json` (format de `shorts/s01-avis-negatif.json` : texte, carte, expression et geste de chaque phrase). La voix se génère ensuite par synthèse (point 3).
+2. **Rotation** : les Reels suivent les 5 rubriques comme les posts, sans reprendre un sujet de `state.json` ni le sujet d'un post de la même semaine.
 3. **Voix de synthèse (décidé avec Noé le 22/11/2026)** : Noé n'enregistre plus. La voix de Scout est la voix « Charon » de la synthèse vocale de Google (`gemini-3.8-flash-tts`), générée phrase par phrase :
    `GEMINI_API_KEY=… python3 shorts/tts-voice.py shorts/<spec>.json out/voix/<id>.wav`, puis le montage avec `--cuts` ci-dessous.
    - Prérequis : `generativelanguage.googleapis.com` autorisé dans les domaines de Claude, et une clé AI Studio fournie par Noé pour la session. La clé ne s'écrit jamais dans le dépôt ; sans clé, prévenir Noé et ne pas publier de Reel.
