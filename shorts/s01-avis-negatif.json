@@ -9,9 +9,9 @@
       "expr": "worried",
       "text": "Un avis à une étoile vient de tomber sur votre fiche Google. Surtout, ne répondez pas tout de suite.",
       "card": {
-        "kind": "review",
+        "kind": "phone-review",
         "stars": 1,
-        "meta": "Fiche Google · il y a 2 min",
+        "meta": "il y a 2 min",
         "body": "Trois jours pour avoir un devis. Je ne recommande pas."
       },
       "pose": {
@@ -22,9 +22,9 @@
       "expr": "calm",
       "text": "Prenez une heure. Puis répondez en trois phrases. Pas une de plus.",
       "card": {
-        "kind": "big",
-        "big": "3",
-        "label": "phrases, pas une de plus"
+        "kind": "bubbles",
+        "n": 3,
+        "sticker": "3 phrases, pas une de plus"
       },
       "pose": {
         "rpose": "point"
@@ -34,10 +34,11 @@
       "expr": "explain",
       "text": "Un : remerciez, et nommez le problème. « Merci d'avoir pris le temps, et désolé pour ce délai. »",
       "card": {
-        "kind": "step",
+        "kind": "phone-reply",
         "n": "1",
-        "title": "Remerciez, nommez le problème",
-        "quote": "Merci d'avoir pris le temps, et désolé pour ce délai."
+        "title": "Remerciez",
+        "quote": "Merci d'avoir pris le temps, et désolé pour ce délai.",
+        "prev": []
       },
       "pose": {
         "count": 1
@@ -47,10 +48,13 @@
       "expr": "explain",
       "text": "Deux : un fait, sans vous justifier. « Cette semaine-là, notre équipe était réduite. »",
       "card": {
-        "kind": "step",
+        "kind": "phone-reply",
         "n": "2",
-        "title": "Un fait, sans vous justifier",
-        "quote": "Cette semaine-là, notre équipe était réduite."
+        "title": "Un fait",
+        "quote": "Cette semaine-là, notre équipe était réduite.",
+        "prev": [
+          "Merci d'avoir pris le temps, et désolé pour ce délai."
+        ]
       },
       "pose": {
         "count": 2
@@ -60,10 +64,14 @@
       "expr": "explain",
       "text": "Trois : une porte de sortie. « Appelez-moi directement, je veux régler ça avec vous. »",
       "card": {
-        "kind": "step",
+        "kind": "phone-reply",
         "n": "3",
         "title": "Une porte de sortie",
-        "quote": "Appelez-moi directement, je veux régler ça avec vous."
+        "quote": "Appelez-moi directement, je veux régler ça avec vous.",
+        "prev": [
+          "Merci d'avoir pris le temps, et désolé pour ce délai.",
+          "Cette semaine-là, notre équipe était réduite."
+        ]
       },
       "pose": {
         "count": 3
@@ -73,9 +81,9 @@
       "expr": "calm",
       "text": "Pourquoi ? Parce que cette réponse, vous ne l'écrivez pas pour lui. Vous l'écrivez pour tous ceux qui la liront avant de vous choisir.",
       "card": {
-        "kind": "big",
-        "big": "Lue",
-        "label": "par tous vos futurs clients"
+        "kind": "readers",
+        "reply": "Merci d'avoir pris le temps, et désolé pour ce délai. Cette semaine-là, notre équipe était réduite. Appelez-moi directement, je veux régler ça avec vous.",
+        "sticker": "Lue par vos futurs clients"
       },
       "pose": {
         "rpose": "point"

@@ -88,6 +88,8 @@ times.forEach((t, i) => console.log(`  segment ${i + 1} : ${t.start.toFixed(2)} 
 
 // ---------- 2. Page HTML : toute l'image est une fonction pure de t ----------
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const SCENES_SRC = fs.readFileSync(path.join(ROOT, 'shorts', 'scenes.js'), 'utf8') // décors animés (une scène par phrase)
+const SCENE_CSS = (SCENES_SRC.match(/const SCENE_CSS = `([\s\S]*?)`/) || [, ''])[1]
 const SCOUT_SRC = fs.readFileSync(path.join(ROOT, 'shorts', 'scout2.mjs'), 'utf8').replace(/^export /gm, '') // inséré tel quel dans la page
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Geist;src:url(${A('Geist-Variable.woff2')});font-weight:100 900}
@@ -95,7 +97,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 html,body{margin:0;background:#0a0a0b}
 #s{position:relative;width:${W}px;height:${H}px;overflow:hidden;font-family:Geist;color:#f8fafc;
   background:radial-gradient(1200px 900px at 50% 62%,#1e1b4b 0%,#0a0a0b 62%)}
-.eyebrow{position:absolute;left:84px;top:150px;font-family:'Geist Mono';font-size:28px;letter-spacing:.14em;text-transform:uppercase;color:#a4adbd}
+.eyebrow{position:absolute;left:84px;top:92px;font-family:'Geist Mono';font-size:28px;letter-spacing:.14em;text-transform:uppercase;color:#a4adbd}
 .card{position:absolute;left:84px;right:84px;top:250px;background:#16161a;border:2px solid #26262d;border-radius:36px;padding:52px;box-sizing:border-box;will-change:transform,opacity}
 .stars{font-size:64px;letter-spacing:6px;color:#fbbf24}.stars i{color:#3f3f46;font-style:normal}
 .meta{font-family:'Geist Mono';font-size:26px;color:#a4adbd;margin-top:14px}
@@ -107,20 +109,20 @@ html,body{margin:0;background:#0a0a0b}
 .q{font-size:48px;line-height:1.3;margin-top:28px;color:#c7d2fe;border-left:6px solid #6366f1;padding-left:28px}
 .cta{background:#4f46e5;border-color:#6366f1}
 .btn{display:inline-block;margin-top:34px;background:#fff;color:#0a0a0b;font-family:'Geist Mono';font-weight:600;font-size:40px;padding:26px 48px;border-radius:999px}
-#mascot{position:absolute;left:50%;top:730px;width:800px;margin-left:-400px}
-.cap{position:absolute;left:70px;right:70px;bottom:230px;text-align:center;font-size:64px;font-weight:800;line-height:1.12;letter-spacing:-.02em;text-shadow:0 4px 24px rgba(0,0,0,.8)}
+#mascot{position:absolute;left:50%;top:1285px;width:600px;margin-left:-300px}
+.cap{position:absolute;left:60px;right:60px;top:1165px;text-align:center;font-size:72px;font-weight:800;z-index:8;-webkit-text-stroke:2px #0a0a0b;paint-order:stroke fill;line-height:1.12;letter-spacing:-.02em;text-shadow:0 4px 24px rgba(0,0,0,.8)}
 .cap span{opacity:.45}.cap span.on{opacity:1;color:#fff}.cap span.now{color:#a5b4fc;opacity:1}
-.foot{position:absolute;left:84px;right:84px;bottom:110px;display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono';font-size:24px;color:#a4adbd}
+.foot{position:absolute;right:84px;top:78px;gap:24px;display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono';font-size:24px;color:#a4adbd}
 .bar{position:absolute;left:0;top:0;height:10px;background:#6366f1}
-</style></head><body><div id="s">
+\n${SCENE_CSS}</style></head><body><div id="s">
 <div class="bar" id="bar"></div>
 <div class="eyebrow">${esc(spec.eyebrow)}</div>
-<div id="cards"></div>
+<div id="stage"></div>
 <div id="mascot"></div>
 <div class="cap" id="cap"></div>
 <div class="foot"><img src="${A('mark-white.svg')}" style="height:52px"><span>${esc(spec.note || '@ezio.seo')}</span></div>
 </div>
-<script>${SCOUT_SRC}</script><script>
+<script>${SCOUT_SRC}</script><script>${SCENES_SRC}</script><script>
 const MARK='${A('mark-white.svg')}';
 const WORDS=${JSON.stringify(words)}, SEG=${JSON.stringify(spec.segments)}, TIMES=${JSON.stringify(times)}, MOUTH=${JSON.stringify(mouth)}, FPS=${FPS}, DUR=${duration};
 const $=id=>document.getElementById(id);
@@ -132,7 +134,8 @@ function cardHtml(c){
   if(c.kind==='step') return '<div class="n">'+c.n+'</div><div class="st">'+c.title+'</div><div class="q">« '+c.quote+' »</div>';
   if(c.kind==='cta') return '<div class="big" style="color:#fff;font-size:120px;letter-spacing:-.04em">'+c.title+'</div><div class="btn">'+c.label+'</div>';
 }
-$('cards').innerHTML=SEG.map((s,i)=>'<div class="card'+(s.card.kind==='cta'?' cta':'')+'" id="c'+i+'" style="opacity:0">'+cardHtml(s.card)+'</div>').join('');
+$('stage').innerHTML=SEG.map((s,i)=>SCENES[s.card.kind]?'<div class="scene" id="c'+i+'" style="opacity:0">'+SCENES[s.card.kind].html(s.card)+'</div>'
+  :'<div class="card'+(s.card.kind==='cta'?' cta':'')+'" id="c'+i+'" style="opacity:0;top:80px">'+cardHtml(s.card)+'</div>').join('');
 // découpage des sous-titres : groupes de ~5 mots, mots répartis au prorata des lettres
 const CAP=SEG.map((s,i)=>{const words=s.text.replace(/[«»]/g,'').split(/\\s+/).filter(Boolean);const T=TIMES[i];const tot=words.reduce((a,w)=>a+w.length+1,0);let acc=0;
   const W=WORDS&&WORDS[i]&&WORDS[i].length===words.length?WORDS[i]:null;
@@ -143,11 +146,16 @@ window.render=function(f){
   let si=TIMES.findIndex((x,i)=>t<(TIMES[i+1]?TIMES[i+1].start:1e9)); if(si<0)si=TIMES.length-1;
   if(t<TIMES[0].start) si=0;
   // cartes : entrée en ressort, sortie en glissé
-  SEG.forEach((s,i)=>{const el=$('c'+i),a=TIMES[i].start-0.15,b=TIMES[i+1]?TIMES[i+1].start-0.15:1e9;
-    if(t<a-0.01||t>b+0.35){el.style.opacity=0;return}
-    const kin=spring((t-a)/0.55),kout=t>b?ease((t-b)/0.3):0;
-    el.style.opacity=Math.min(1,(t-a)/0.15)*(1-kout);
-    el.style.transform='translateY('+((1-kin)*120-kout*80)+'px) scale('+(0.92+0.08*kin)+') rotate('+((1-kin)*-3)+'deg)'});
+  // scènes : entrée et sortie en balayage flou (comme un mouvement de caméra rapide), dérive lente pendant la phrase
+  SEG.forEach((s,i)=>{const el=$('c'+i),a=TIMES[i].start-0.2,b=TIMES[i+1]?TIMES[i+1].start-0.2:1e9;
+    if(t<a-0.01||t>b+0.3){el.style.opacity=0;return}
+    const kin=ease((t-a)/0.3),kout=t>b?ease((t-b)/0.3):0,sc=SCENES[s.card.kind];
+    el.style.opacity=1;
+    if(sc){const lt=t-TIMES[i].start, D=(TIMES[i].end-TIMES[i].start);
+      el.style.transform='translateX('+((1-kin)*700-kout*700)+'px) scale('+(1+0.03*Math.max(0,lt)/D)+')';
+      el.style.filter='blur('+((1-kin)+kout)*22+'px)';
+      sc.anim(el,Math.max(0,lt),D,s.card)}
+    else{el.style.transform='translateY('+((1-kin)*120-kout*80)+'px)'}});
   // mascotte Scout : expression + gestes du segment, bouche sur la voix, flottement, clignement
   const v=MOUTH[Math.min(f,MOUTH.length-1)]||0, S=SEG[si], pose=S.pose||{}, talk=v>0.08;
   const segIn=spring((t-TIMES[si].start)/0.5);
@@ -157,7 +165,7 @@ window.render=function(f){
   const wave=pose.rpose==='wave'?((t*0.9)%1):0;
   $('mascot').innerHTML=scoutSvg({id:'m',variant:'casque',expr:S.expr==='calm'?'neutral':S.expr,mouth:Math.min(1,v*1.1),blink,
     look:[Math.sin(t*0.7)*0.4,(pose.rpose==='point'?-0.5:-0.2)+Math.sin(t*0.9)*0.15],count:pose.count||0,rpose:pose.rpose||'rest',wave,
-    tilt,bob,glow:0.55+v*0.45,size:800});
+    tilt,bob,glow:0.55+v*0.45,size:600});
   // sous-titres
   const groups=CAP[si];let gi=0;for(let k=0;k<groups.length;k++)if(t>=groups[k][0].t-0.05)gi=k;
   const g=groups[gi], show=t>=TIMES[si].start-0.1&&t<=TIMES[si].end+0.4;
