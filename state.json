@@ -49,5 +49,16 @@
     }
   ],
   "ready_not_published": [],
-  "approved_pending": []
+  "approved_pending": [
+    {
+      "id": "reel-02-moyenne-ment",
+      "type": "reel",
+      "rubrique": "Le radar",
+      "sujet": "Moyenne de position vs carte : pourquoi la moyenne ment",
+      "slot": "2026-11-25T18:00 Europe/Paris",
+      "approved": "2026-11-22",
+      "trigger_id": "trig_018nFBVFpyHvA2UrJ5r4uQQx",
+      "video_url": "https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/5b85cc27f9542a702b062f4047832a59616297fc/public/2026-w48/reel-02-moyenne-ment/reel.mp4"
+    }
+  ]
 }
