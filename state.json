@@ -79,6 +79,51 @@
       "approved": "2026-11-22",
       "trigger_id": "trig_01EVx4Gi8J9gJxg1rHA7KQxf",
       "video_url": "https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/5b85cc27f9542a702b062f4047832a59616297fc/public/2026-w48/reel-03-rien-invente/reel.mp4"
+    },
+    {
+      "id": "w48-story-lun",
+      "type": "story",
+      "rubrique": "Visibilité IA",
+      "sujet": "Relais : demandez à l'IA qui choisir",
+      "slot": "2026-11-23T12:00 Europe/Paris",
+      "approved": "2026-11-22",
+      "trigger_id": "trig_01XSFDt1PHJQq9zJTHi7uXWn"
+    },
+    {
+      "id": "w48-post-mar-visibilite-ia",
+      "type": "carousel",
+      "rubrique": "Visibilité IA",
+      "sujet": "Les assistants IA recommandent-ils votre entreprise ? Le test en 2 minutes",
+      "slot": "2026-11-24T12:00 Europe/Paris",
+      "approved": "2026-11-22",
+      "trigger_id": "trig_01DgWZLmcQujnKqSRg4NVQ7P"
+    },
+    {
+      "id": "w48-post-jeu-article-sur-place",
+      "type": "carousel",
+      "rubrique": "Auto-healing",
+      "sujet": "Un article en ligne qui décroche se met à jour sur place (PR #256)",
+      "slot": "2026-11-26T12:00 Europe/Paris",
+      "approved": "2026-11-22",
+      "trigger_id": "trig_01DS3qn6Aam8mrudyB6AQpyA"
+    },
+    {
+      "id": "w48-story-ven",
+      "type": "story",
+      "rubrique": "Geste SEO local",
+      "sujet": "Relais : vos horaires de fêtes sont-ils sur Google ?",
+      "slot": "2026-11-27T12:00 Europe/Paris",
+      "approved": "2026-11-22",
+      "trigger_id": "trig_018Qf3iiA6CbfiqbdDzYhWBi"
+    },
+    {
+      "id": "w48-post-sam-horaires",
+      "type": "carousel",
+      "rubrique": "Geste SEO local",
+      "sujet": "Vos horaires exceptionnels (fêtes, congés)",
+      "slot": "2026-11-28T10:00 Europe/Paris",
+      "approved": "2026-11-22",
+      "trigger_id": "trig_015dZCpMAd9KYNcg3UmecukW"
     }
   ]
 }
