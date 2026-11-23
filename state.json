@@ -54,6 +54,14 @@
       "rubrique": "Visibilité IA",
       "sujet": "Relais : demandez à l'IA qui choisir",
       "media_id": "18117731174166950"
+    },
+    {
+      "date": "2026-11-23",
+      "id": "reel-01-avis-negatif",
+      "type": "reel",
+      "rubrique": "Geste SEO local",
+      "sujet": "Répondre à un avis négatif : la structure en 3 phrases",
+      "media_id": "18116231396190462"
     }
   ],
   "ready_not_published": [],
@@ -67,16 +75,6 @@
       "approved": "2026-11-22",
       "trigger_id": "trig_018nFBVFpyHvA2UrJ5r4uQQx",
       "video_url": "https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/5b85cc27f9542a702b062f4047832a59616297fc/public/2026-w48/reel-02-moyenne-ment/reel.mp4"
-    },
-    {
-      "id": "reel-01-avis-negatif",
-      "type": "reel",
-      "rubrique": "Geste SEO local",
-      "sujet": "Répondre à un avis négatif : la structure en 3 phrases",
-      "slot": "2026-11-23T18:00 Europe/Paris",
-      "approved": "2026-11-22",
-      "trigger_id": "trig_01JmXSMN8jpMZSbmeBJYRKZd",
-      "video_url": "https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/5b85cc27f9542a702b062f4047832a59616297fc/public/2026-w48/reel-01-avis-negatif/reel.mp4"
     },
     {
       "id": "reel-03-rien-invente",
