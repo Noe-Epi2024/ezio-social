@@ -35,3 +35,8 @@
 - « Où suis-je vraiment sur Google Maps ? » : 5 slides, de la position unique à la grille rue par rue, dernière slide vers l'audit gratuit (ezioseo.com/roi)
 - Répondre à un avis Google, positif ou négatif : 3 modèles en 3 phrases, et les 2 erreurs qui coûtent des clients
 - Les assistants IA recommandent-ils votre entreprise ? Le test à faire soi-même en 2 minutes, puis ce qui fait qu'on est cité (fiche complète, avis, pages claires)
+
+## Issus des articles du blog (SEO S48, 23/11) — carrousels relais
+- Un post Google par semaine sur votre fiche : quoi publier (offre, nouveauté, conseil), quand le planifier, ce que ça ne remplace pas ; dernière slide vers ezioseo.com/help/google-posts
+- Optimiser sa fiche Google en 6 slides : catégories, description, horaires, services, photos, avis, un critère par slide ; dernière slide vers l'audit gratuit (ezioseo.com/roi)
+- Être trouvé sur Google Maps dans la ville d'à côté : ce que la distance permet, ce qu'elle interdit, et comment le mesurer ; dernière slide vers ezioseo.com/help/target-city
