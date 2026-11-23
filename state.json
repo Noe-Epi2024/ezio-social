@@ -46,6 +46,14 @@
       "rubrique": "En coulisses",
       "sujet": "Pas de fiche Google ? EZIO s'adapte (PR #243-#245)",
       "media_id": "18123691511284065"
+    },
+    {
+      "date": "2026-11-23",
+      "id": "w48-story-lun",
+      "type": "story",
+      "rubrique": "Visibilité IA",
+      "sujet": "Relais : demandez à l'IA qui choisir",
+      "media_id": "18117731174166950"
     }
   ],
   "ready_not_published": [],
@@ -79,15 +87,6 @@
       "approved": "2026-11-22",
       "trigger_id": "trig_01EVx4Gi8J9gJxg1rHA7KQxf",
       "video_url": "https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/5b85cc27f9542a702b062f4047832a59616297fc/public/2026-w48/reel-03-rien-invente/reel.mp4"
-    },
-    {
-      "id": "w48-story-lun",
-      "type": "story",
-      "rubrique": "Visibilité IA",
-      "sujet": "Relais : demandez à l'IA qui choisir",
-      "slot": "2026-11-23T12:00 Europe/Paris",
-      "approved": "2026-11-22",
-      "trigger_id": "trig_01XSFDt1PHJQq9zJTHi7uXWn"
     },
     {
       "id": "w48-post-mar-visibilite-ia",
