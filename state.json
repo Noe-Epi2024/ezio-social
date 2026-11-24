@@ -62,6 +62,14 @@
       "rubrique": "Geste SEO local",
       "sujet": "Répondre à un avis négatif : la structure en 3 phrases",
       "media_id": "18116231396190462"
+    },
+    {
+      "date": "2026-11-24",
+      "id": "w48-post-mar-visibilite-ia",
+      "type": "carousel",
+      "rubrique": "Visibilité IA",
+      "sujet": "Les assistants IA recommandent-ils votre entreprise ? Le test en 2 minutes",
+      "media_id": "17887127499523117"
     }
   ],
   "ready_not_published": [],
@@ -85,15 +93,6 @@
       "approved": "2026-11-22",
       "trigger_id": "trig_01EVx4Gi8J9gJxg1rHA7KQxf",
       "video_url": "https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/5b85cc27f9542a702b062f4047832a59616297fc/public/2026-w48/reel-03-rien-invente/reel.mp4"
-    },
-    {
-      "id": "w48-post-mar-visibilite-ia",
-      "type": "carousel",
-      "rubrique": "Visibilité IA",
-      "sujet": "Les assistants IA recommandent-ils votre entreprise ? Le test en 2 minutes",
-      "slot": "2026-11-24T12:00 Europe/Paris",
-      "approved": "2026-11-22",
-      "trigger_id": "trig_01DgWZLmcQujnKqSRg4NVQ7P"
     },
     {
       "id": "w48-post-jeu-article-sur-place",

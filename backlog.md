@@ -24,7 +24,7 @@
 - Article qui vieillit : détecter le décrochage avant la chute
 
 ## Visibilité IA
-- Demandez « un plombier près de chez moi » à un assistant IA : êtes-vous cité ?
+- ~~Demandez « un plombier près de chez moi » à un assistant IA : êtes-vous cité ?~~ (carrousel publié le 24/11)
 - Les sources que les assistants consultent pour recommander un artisan
 - Être cité par l'IA : avis, fiche complète, pages claires
 
@@ -34,7 +34,7 @@
 ## Issus des articles du blog (SEO S47, 16/11) — carrousels relais
 - « Où suis-je vraiment sur Google Maps ? » : 5 slides, de la position unique à la grille rue par rue, dernière slide vers l'audit gratuit (ezioseo.com/roi)
 - Répondre à un avis Google, positif ou négatif : 3 modèles en 3 phrases, et les 2 erreurs qui coûtent des clients
-- Les assistants IA recommandent-ils votre entreprise ? Le test à faire soi-même en 2 minutes, puis ce qui fait qu'on est cité (fiche complète, avis, pages claires)
+- ~~Les assistants IA recommandent-ils votre entreprise ? Le test à faire soi-même en 2 minutes, puis ce qui fait qu'on est cité (fiche complète, avis, pages claires)~~ (carrousel publié le 24/11)
 
 ## Issus des articles du blog (SEO S48, 23/11) — carrousels relais
 - Un post Google par semaine sur votre fiche : quoi publier (offre, nouveauté, conseil), quand le planifier, ce que ça ne remplace pas ; dernière slide vers ezioseo.com/help/google-posts
