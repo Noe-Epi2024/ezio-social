@@ -15,7 +15,7 @@
 ## Le radar
 - Votre rang change d'une rue à l'autre : lire une grille en 30 secondes
 - Le « trou » à l'est de la ville : quand un concurrent capte une zone entière
-- Moyenne de position vs carte : pourquoi la moyenne ment
+- ~~Moyenne de position vs carte : pourquoi la moyenne ment~~ (Reel publié le 25/11)
 - Rayon de 1 km, 3 km, 5 km : quelle grille pour quel métier
 
 ## Boucle fermée
