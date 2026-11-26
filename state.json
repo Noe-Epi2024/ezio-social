@@ -78,6 +78,14 @@
       "rubrique": "Le radar",
       "sujet": "Moyenne de position vs carte : pourquoi la moyenne ment",
       "media_id": "17998430597840879"
+    },
+    {
+      "date": "2026-11-26",
+      "id": "w48-post-jeu-article-sur-place",
+      "type": "carousel",
+      "rubrique": "Auto-healing",
+      "sujet": "Un article en ligne qui décroche se met à jour sur place (PR #256)",
+      "media_id": "18111274241628963"
     }
   ],
   "ready_not_published": [],
@@ -91,15 +99,6 @@
       "approved": "2026-11-22",
       "trigger_id": "trig_01EVx4Gi8J9gJxg1rHA7KQxf",
       "video_url": "https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/5b85cc27f9542a702b062f4047832a59616297fc/public/2026-w48/reel-03-rien-invente/reel.mp4"
-    },
-    {
-      "id": "w48-post-jeu-article-sur-place",
-      "type": "carousel",
-      "rubrique": "Auto-healing",
-      "sujet": "Un article en ligne qui décroche se met à jour sur place (PR #256)",
-      "slot": "2026-11-26T12:00 Europe/Paris",
-      "approved": "2026-11-22",
-      "trigger_id": "trig_01DS3qn6Aam8mrudyB6AQpyA"
     },
     {
       "id": "w48-story-ven",
