@@ -94,20 +94,18 @@
       "rubrique": "Geste SEO local",
       "sujet": "Relais : vos horaires de fêtes sont-ils sur Google ?",
       "media_id": "18134346097695363"
-    }
-  ],
-  "ready_not_published": [],
-  "approved_pending": [
+    },
     {
+      "date": "2026-11-27",
       "id": "reel-03-rien-invente",
       "type": "reel",
       "rubrique": "En coulisses",
       "sujet": "Nos articles n'inventent rien sur vous (PR #270, #272)",
-      "slot": "2026-11-27T18:00 Europe/Paris",
-      "approved": "2026-11-22",
-      "trigger_id": "trig_01EVx4Gi8J9gJxg1rHA7KQxf",
-      "video_url": "https://raw.githubusercontent.com/Noe-Epi2024/ezio-social/5b85cc27f9542a702b062f4047832a59616297fc/public/2026-w48/reel-03-rien-invente/reel.mp4"
-    },
+      "media_id": "18115241528620052"
+    }
+  ],
+  "ready_not_published": [],
+  "approved_pending": [
     {
       "id": "w48-post-sam-horaires",
       "type": "carousel",
