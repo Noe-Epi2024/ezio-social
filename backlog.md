@@ -3,7 +3,7 @@
 ## Geste SEO local (thème Jour)
 - ~~La catégorie principale de votre fiche Google : le réglage le plus sous-estimé~~ (publié le 19/11)
 - ~~Répondre à un avis négatif : la structure en 3 phrases~~ (Reel publié le 23/11)
-- Vos horaires exceptionnels (fêtes, congés) : pourquoi Google les surveille
+- ~~Vos horaires exceptionnels (fêtes, congés) : pourquoi Google les surveille~~ (publié le 28/11)
 - Les photos de votre fiche : lesquelles mettre, à quelle fréquence
 - Les attributs de fiche que vos concurrents oublient (paiement, accessibilité, prise de rendez-vous)
 - La description de fiche : ce qu'elle doit dire en 750 caractères

@@ -102,18 +102,16 @@
       "rubrique": "En coulisses",
       "sujet": "Nos articles n'inventent rien sur vous (PR #270, #272)",
       "media_id": "18115241528620052"
-    }
-  ],
-  "ready_not_published": [],
-  "approved_pending": [
+    },
     {
+      "date": "2026-11-28",
       "id": "w48-post-sam-horaires",
       "type": "carousel",
       "rubrique": "Geste SEO local",
       "sujet": "Vos horaires exceptionnels (fêtes, congés)",
-      "slot": "2026-11-28T10:00 Europe/Paris",
-      "approved": "2026-11-22",
-      "trigger_id": "trig_015dZCpMAd9KYNcg3UmecukW"
+      "media_id": "17919107364542595"
     }
-  ]
+  ],
+  "ready_not_published": [],
+  "approved_pending": []
 }
